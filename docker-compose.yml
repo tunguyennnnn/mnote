@@ -1,21 +1,22 @@
 version: 1
 networks:
-  testnetwork:
+  webnetwork:
 services:
   redis:
     image: redis:alpine
-    container_name: cache
-    expose:
-      - 6379
     volumes:
       - /tmp/redis:/data
+    networks:
+      - webnetwork
     restart: always
   postgres:
     image: postgres:9.6
-    expose:
-      - 5432
+    networks:
+      - webnetwork
     environment:
       POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: v_database
     volumes:
       - /tmp/postgres:/var/lib/postgresql/data
     restart: always
@@ -25,4 +26,9 @@ services:
       - ${PWD}/setting.json:/user/src/app
     ports:
       - "80:4000"
+    networks:
+      - webnetwork
+    environment:
+      DB_HOST: postgres
+      REDIS_HOST: redis
     restart: on-failure
