@@ -1,17 +1,21 @@
 'use strict'
+import fs from 'fs'
+import path from 'path'
+import Sequelize from 'sequelize'
+import configFile from '../config/config'
 
-const fs        = require('fs')
-const path      = require('path')
-const Sequelize = require('sequelize')
-const basename  = path.basename(__filename)
-const env       = process.env.NODE_ENV || 'development'
-const config    = require('../config')[env]
-const db        = {}
+const basename = path.basename(__filename)
+const env = process.env.NODE_ENV || 'development'
+const db = {}
+
+const config = configFile[env]
+
+let sequelize
 
 if (config.use_env_constiable) {
-  const sequelize = new Sequelize(process.env[config.use_env_constiable], config)
+  sequelize = new Sequelize(process.env[config.use_env_constiable], config)
 } else {
-  const sequelize = new Sequelize(config.database, config.username, config.password, config)
+  sequelize = new Sequelize(config.database, config.username, config.password, config)
 }
 
 fs

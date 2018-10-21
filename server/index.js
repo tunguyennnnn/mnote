@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import compress from 'compression'
 import cors from 'cors'
 import path from 'path'
+import models from './models'
 
 const app = express()
 const server = require('http').createServer(app)
@@ -16,6 +17,8 @@ server.listen(4000, () => {
 app.get('/helloworld', (req, res, next) => {
   res.json({ message: 'hello world' })
 })
+
+console.log('hahaha')
 
 // app.all('*', cors())
 //

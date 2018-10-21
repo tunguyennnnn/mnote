@@ -1,4 +1,4 @@
-from node:8
+from node:9
 MAINTAINER tunguyenuni@gmail.com
 
 
@@ -6,12 +6,15 @@ WORKDIR /usr/src/app
 
 EXPOSE 4000
 
-COPY ./package.json ./
+COPY ./server/package* ./
+
 
 RUN npm install -g yarn
 
+RUN npm install -g sequelize-cli
+
 RUN yarn
 
-COPY ./ ./
-
 EXPOSE 4000
+
+CMD yarn run start:dev
