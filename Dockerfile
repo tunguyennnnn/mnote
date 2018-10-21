@@ -4,16 +4,11 @@ MAINTAINER tunguyenuni@gmail.com
 
 WORKDIR /usr/src/app
 
-EXPOSE 4000
-
 COPY ./server/package* ./
-
-
-RUN npm install -g yarn
 
 RUN npm install -g sequelize-cli
 
-RUN yarn
+RUN npm install
 
 EXPOSE 4000
 

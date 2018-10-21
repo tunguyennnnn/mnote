@@ -1,0 +1,11 @@
+{
+  "name": "stream-video-stack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tunguyennnnn/vserver.git",
+  "author": "tunguyennnnn <conghoa522@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:devserver": "docker build -t stream-server:0.0.1 ."
+  }
+}

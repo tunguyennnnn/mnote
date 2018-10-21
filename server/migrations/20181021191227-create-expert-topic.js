@@ -1,17 +1,14 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Videos', {
+    return queryInterface.createTable('ExpertTopics', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      url: {
-        type: Sequelize.STRING
-      },
-      title: {
+      name: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -27,6 +24,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Videos')
+    return queryInterface.dropTable('ExpertTopics')
   }
 }

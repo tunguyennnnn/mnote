@@ -6,6 +6,7 @@ import compress from 'compression'
 import cors from 'cors'
 import path from 'path'
 import models from './models'
+import schema from './graphql'
 
 const app = express()
 const server = require('http').createServer(app)
@@ -18,25 +19,23 @@ app.get('/helloworld', (req, res, next) => {
   res.json({ message: 'hello world' })
 })
 
-console.log('hahaha')
+app.all('*', cors())
 
-// app.all('*', cors())
-//
-// app.use(
-//   '/graphiql',
-//   graphiqlExpress({
-//     endpointURL: '/graphql'
-//   })
-// )
-//
-// app.use(
-//   '/graphql',
-//   bodyParser.json(),
-//   apolloUploadExpress({ uploadDir: './' }),
-//   graphqlExpress(req => ({
-//     schema, context: { models }
-//   }))
-// )
+app.use(
+  '/graphiql',
+  graphiqlExpress({
+    endpointURL: '/graphql'
+  })
+)
+
+app.use(
+  '/graphql',
+  bodyParser.json(),
+  apolloUploadExpress({ uploadDir: './' }),
+  graphqlExpress(req => ({
+    schema, context: { models }
+  }))
+)
 
 process.on('SIGTERM', () => {
   process.exit(0)

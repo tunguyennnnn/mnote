@@ -1,15 +1,12 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Videos', {
+    return queryInterface.createTable('Tags', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      url: {
-        type: Sequelize.STRING
       },
       title: {
         type: Sequelize.STRING
@@ -27,6 +24,6 @@ module.exports = {
     })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Videos')
+    return queryInterface.dropTable('Tags')
   }
 }

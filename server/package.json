@@ -25,6 +25,8 @@
     "graphql-type-json": "^0.2.1",
     "grpc": "^1.15.1",
     "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "merge-graphql-schemas": "^1.5.7",
     "pg": "^7.5.0",
     "redis": "^2.8.0",
     "sequelize": "^4.39.1"
