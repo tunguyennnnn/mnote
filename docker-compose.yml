@@ -14,7 +14,7 @@ services:
     networks:
       - webnetwork
     volumes:
-      - ~/Documents/stream-video-stack/postgres_data:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
@@ -23,7 +23,10 @@ services:
   server:
     image: stream-server:0.0.1
     volumes:
-      - ~/Documents/stream-video-stack/server:/usr/src/app
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - postgres
     ports:
       - "4000:4000"
     networks:
@@ -31,4 +34,13 @@ services:
     environment:
       DB_HOST: postgres
       REDIS_HOST: redis
+    restart: on-failure
+  craping-server:
+    networks:
+      - webnetwork
+    image: craping-service:0.0.1
+    volumes:
+      - ./craping-server:/usr/src/app
+    ports:
+      - "5000:5000"
     restart: on-failure

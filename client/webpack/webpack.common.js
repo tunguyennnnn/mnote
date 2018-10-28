@@ -18,6 +18,11 @@ module.exports = {
         exclude: /(node_modules)/
       },
       {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto",
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
@@ -42,7 +47,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx', '.mjs', '.json']
   },
   plugins: [
     new webpack.ProgressPlugin(),

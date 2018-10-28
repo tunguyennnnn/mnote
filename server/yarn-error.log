@@ -1,26 +1,17 @@
 Arguments: 
-  /Users/tunguyen/.nvm/versions/node/v8.9.4/bin/node /Users/tunguyen/.nvm/versions/node/v8.9.4/bin/yarn start
+  /usr/local/bin/node /opt/yarn-v1.5.1/bin/yarn.js run start:dev
 
 PATH: 
-  /Users/tunguyen/Desktop/google-cloud-sdk/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Users/tunguyen/.nvm/versions/node/v8.9.4/bin:/usr/local/mysql/bin:/usr/local/bin:/Documents/mongodb/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/opt/local/bin:/opt/local/sbin:/Library/Frameworks/Python.framework/Versions/3.5/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql/bin:/Users/tunguyen/.rvm/gems/ruby-2.3.1/bin:/Users/tunguyen/.rvm/gems/ruby-2.3.1@global/bin:/Users/tunguyen/.rvm/rubies/ruby-2.3.1/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Library/TeX/texbin:/Users/tunguyen/.rvm/bin:/usr/local/go/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 Yarn version: 
-  1.10.1
+  1.5.1
 
 Node version: 
-  8.9.4
+  9.11.2
 
 Platform: 
-  darwin x64
-
-Trace: 
-  SyntaxError: /Users/tunguyen/Documents/stream-video-stack/server/package.json: Unexpected token } in JSON at position 292
-      at JSON.parse (<anonymous>)
-      at /Users/tunguyen/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:1136:59
-      at Generator.next (<anonymous>)
-      at step (/Users/tunguyen/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:98:30)
-      at /Users/tunguyen/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:109:13
-      at <anonymous>
+  linux x64
 
 npm manifest: 
   {
@@ -29,9 +20,9 @@ npm manifest:
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-      "start": "cross-env NODE_ENV=production babel-node src/index.js",
-      "start:dev": "nodemon src/index.js --exec babel-node",
-      "docker:build": "docker build -t graph-server:0.0.1 .",
+      "start": "cross-env NODE_ENV=production babel-node index.js",
+      "start:dev": "nodemon index.js --exec babel-node",
+      "docker:build": "docker build -t stream-server:0.0.1 ."
     },
     "dependencies": {
       "apollo-server-express": "^2.1.0",
@@ -50,6 +41,9 @@ npm manifest:
       "graphql-type-json": "^0.2.1",
       "grpc": "^1.15.1",
       "jsonwebtoken": "^8.3.0",
+      "lodash": "^4.17.11",
+      "merge-graphql-schemas": "^1.5.7",
+      "pg": "^7.5.0",
       "redis": "^2.8.0",
       "sequelize": "^4.39.1"
     },
@@ -1249,6 +1243,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
     integrity sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
   
+  buffer-writer@1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/buffer-writer/-/buffer-writer-1.0.1.tgz#22a936901e3029afcd7547eb4487ceb697a3bf08"
+    integrity sha1-Iqk2kB4wKa/NdUfrRIfOtpejvwg=
+  
   busboy@^0.2.14:
     version "0.2.14"
     resolved "https://registry.yarnpkg.com/busboy/-/busboy-0.2.14.tgz#6c2a622efcf47c57bbbe1e2a9c37ad36c7925453"
@@ -1580,6 +1579,11 @@ Lockfile:
     version "0.6.0"
     resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
     integrity sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==
+  
+  deepmerge@^2.1.1:
+    version "2.2.1"
+    resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
+    integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
   
   define-properties@^1.1.2:
     version "1.1.3"
@@ -2010,7 +2014,7 @@ Lockfile:
       is-glob "^3.1.0"
       path-dirname "^1.0.0"
   
-  glob@^7.0.5:
+  glob@^7.0.5, glob@^7.1.3:
     version "7.1.3"
     resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.3.tgz#3960832d3f1574108342dafd3a67b332c0969df1"
     integrity sha512-vcfuiIxogLV4DlGBHIUOwI0IbrJ8HWPc4MU7HzviGeNho/UJDfi6B5p3sHeWIQ0KGIU0Jpxi5ZHxemQfLkkAwQ==
@@ -2680,7 +2684,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
     integrity sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=
   
-  lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.5:
+  lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5:
     version "4.17.11"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
     integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -2748,6 +2752,15 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
     integrity sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
+  
+  merge-graphql-schemas@^1.5.7:
+    version "1.5.7"
+    resolved "https://registry.yarnpkg.com/merge-graphql-schemas/-/merge-graphql-schemas-1.5.7.tgz#1eb8535a3f5be0e4e9f69bff4422e7cc49ace4c7"
+    integrity sha512-tlvJex2mokybxajNuMz9bkZwqD1kaEbgxTb/fgNP8m+IKL2eQ21hr9uBMslESRil9Z4EaHL0QGaLJwcfx99UCA==
+    dependencies:
+      deepmerge "^2.1.1"
+      glob "^7.1.3"
+      is-glob "^4.0.0"
   
   methods@~1.1.2:
     version "1.1.2"
@@ -3170,6 +3183,11 @@ Lockfile:
       registry-url "^3.0.3"
       semver "^5.1.0"
   
+  packet-reader@0.3.1:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/packet-reader/-/packet-reader-0.3.1.tgz#cd62e60af8d7fea8a705ec4ff990871c46871f27"
+    integrity sha1-zWLmCvjX/qinBexP+ZCHHEaHHyc=
+  
   parse-passwd@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
@@ -3227,6 +3245,46 @@ Lockfile:
     dependencies:
       through "~2.3"
   
+  pg-connection-string@0.1.3:
+    version "0.1.3"
+    resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-0.1.3.tgz#da1847b20940e42ee1492beaf65d49d91b245df7"
+    integrity sha1-2hhHsglA5C7hSSvq9l1J2RskXfc=
+  
+  pg-pool@~2.0.3:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-2.0.3.tgz#c022032c8949f312a4f91fb6409ce04076be3257"
+    integrity sha1-wCIDLIlJ8xKk+R+2QJzgQHa+Mlc=
+  
+  pg-types@~1.12.1:
+    version "1.12.1"
+    resolved "https://registry.yarnpkg.com/pg-types/-/pg-types-1.12.1.tgz#d64087e3903b58ffaad279e7595c52208a14c3d2"
+    integrity sha1-1kCH45A7WP+q0nnnWVxSIIoUw9I=
+    dependencies:
+      postgres-array "~1.0.0"
+      postgres-bytea "~1.0.0"
+      postgres-date "~1.0.0"
+      postgres-interval "^1.1.0"
+  
+  pg@^7.5.0:
+    version "7.5.0"
+    resolved "https://registry.yarnpkg.com/pg/-/pg-7.5.0.tgz#c2853bef2fcb91424ba2f649fd951ce866a84760"
+    integrity sha512-VFyAnp8xsMZp8nwZnMp7lmU5QcWDOZSI3IDNcWv6pblsiOXis5o7lD7/zzVK1Z1JTBiIDDGQAMbFMkiUzCL59A==
+    dependencies:
+      buffer-writer "1.0.1"
+      packet-reader "0.3.1"
+      pg-connection-string "0.1.3"
+      pg-pool "~2.0.3"
+      pg-types "~1.12.1"
+      pgpass "1.x"
+      semver "4.3.2"
+  
+  pgpass@1.x:
+    version "1.0.2"
+    resolved "https://registry.yarnpkg.com/pgpass/-/pgpass-1.0.2.tgz#2a7bb41b6065b67907e91da1b07c1847c877b306"
+    integrity sha1-Knu0G2BltnkH6R2hsHwYR8h3swY=
+    dependencies:
+      split "^1.0.0"
+  
   pify@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
@@ -3250,6 +3308,28 @@ Lockfile:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
     integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
+  
+  postgres-array@~1.0.0:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/postgres-array/-/postgres-array-1.0.3.tgz#c561fc3b266b21451fc6555384f4986d78ec80f5"
+    integrity sha512-5wClXrAP0+78mcsNX3/ithQ5exKvCyK5lr5NEEEeGwwM6NJdQgzIJBVxLvRW+huFpX92F2QnZ5CcokH0VhK2qQ==
+  
+  postgres-bytea@~1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-1.0.0.tgz#027b533c0aa890e26d172d47cf9ccecc521acd35"
+    integrity sha1-AntTPAqokOJtFy1Hz5zOzFIazTU=
+  
+  postgres-date@~1.0.0:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/postgres-date/-/postgres-date-1.0.3.tgz#e2d89702efdb258ff9d9cee0fe91bd06975257a8"
+    integrity sha1-4tiXAu/bJY/52c7g/pG9BpdSV6g=
+  
+  postgres-interval@^1.1.0:
+    version "1.1.2"
+    resolved "https://registry.yarnpkg.com/postgres-interval/-/postgres-interval-1.1.2.tgz#bf71ff902635f21cb241a013fc421d81d1db15a9"
+    integrity sha512-fC3xNHeTskCxL1dC8KOtxXt7YeFmlbTYtn7ul8MkVERuTmf7pI4DrkAxcw3kh1fQ9uz4wQmd03a1mRiXUZChfQ==
+    dependencies:
+      xtend "^4.0.0"
   
   prepend-http@^1.0.1:
     version "1.0.4"
@@ -3560,6 +3640,11 @@ Lockfile:
     dependencies:
       semver "^5.0.3"
   
+  semver@4.3.2:
+    version "4.3.2"
+    resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.2.tgz#c7a07158a80bedd052355b770d82d6640f803be7"
+    integrity sha1-x6BxWKgL7dBSNVt3DYLWZA+AO+c=
+  
   semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
     version "5.6.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
@@ -3740,7 +3825,7 @@ Lockfile:
     dependencies:
       extend-shallow "^3.0.0"
   
-  split@^1.0.1:
+  split@^1.0.0, split@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/split/-/split-1.0.1.tgz#605bd9be303aa59fb35f9229fbea0ddec9ea07d9"
     integrity sha512-mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==
@@ -4169,6 +4254,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
     integrity sha1-SWsswQnsqNus/i3HK2A8F8WHCtQ=
   
+  xtend@^4.0.0:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
+    integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
+  
   y18n@^3.2.0:
     version "3.2.1"
     resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
@@ -4208,3 +4298,18 @@ Lockfile:
     version "0.8.9"
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.9.tgz#0475c760ff0eda046bbdfa4dc3f95d392807ac53"
     integrity sha512-Y9kPzjGvIZ5jchSlqlCpBW3I82zBBL4z+ulXDRVA1NwsKzjt5kwAi+gOYIy0htNkfuehGZZtP5mRXHRV6TjDWw==
+
+Trace: 
+  Error: Command failed.
+  Exit code: 127
+  Command: sh
+  Arguments: -c nodemon index.js --exec babel-node
+  Directory: /usr/src/app
+  Output:
+  
+      at ProcessTermError.MessageError (/opt/yarn-v1.5.1/lib/cli.js:186:110)
+      at new ProcessTermError (/opt/yarn-v1.5.1/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/opt/yarn-v1.5.1/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:180:13)
+      at maybeClose (internal/child_process.js:936:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
