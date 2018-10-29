@@ -34,6 +34,7 @@ services:
     environment:
       DB_HOST: postgres
       REDIS_HOST: redis
+      CRAPING_HOST: craping-server
     restart: on-failure
   craping-server:
     networks:

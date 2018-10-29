@@ -1,4 +1,9 @@
 export default `
   scalar JSON
-  scalar Upload  
+  scalar Upload
+
+  type PageInfo {
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+  }
 `

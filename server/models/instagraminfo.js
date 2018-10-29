@@ -8,8 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     numberOfLikes: DataTypes.INTEGER,
     instagramItemId: DataTypes.INTEGER
   }, {});
-  InstagramInfo.associate = function(models) {
-    // associations can be defined here
+  InstagramInfo.associate = (models) => {
+    InstagramInfo.belongsTo(models.InstagramItem, {
+      foreignKey: 'instagramItemId',
+      as: 'item'
+    })
   };
   return InstagramInfo;
 };
