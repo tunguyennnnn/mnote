@@ -13,7 +13,7 @@ export default `
     id: ID!
     url: String!
     name: String!
-    infoConnection (cursor: String, limit: Int = 10): InstagramItemInfoConnection!
+    infoConnection (cursor: String, limit: Int = 2): InstagramItemInfoConnection!
   }
 
   type InstagramItemEdge {
