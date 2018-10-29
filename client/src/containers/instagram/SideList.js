@@ -5,11 +5,13 @@ import ItemList from './ItemList'
 
 export default class SideList  extends React.Component {
   render () {
+    const { items, setItem } = this.props
+    console.log(items)
     return (
       <div>
         <Header as='h2'>List of Instagram Profiles</Header>
         <Input fluid placeholder='Search...' />
-        <ItemList />
+        <ItemList items={items} setItem={setItem} />
       </div>
     )
   }
