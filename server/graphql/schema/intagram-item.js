@@ -13,6 +13,8 @@ export default `
     id: ID!
     url: String!
     name: String!
+    description: String!
+    createdAt: String!
     infoConnection (cursor: String, limit: Int = 2): InstagramItemInfoConnection!
   }
 
