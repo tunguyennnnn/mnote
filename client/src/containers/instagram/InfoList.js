@@ -1,15 +1,20 @@
 import React from 'react'
 import { List, Header, Label } from 'semantic-ui-react'
-import {graphql, compose} from 'react-apollo'
+import {graphql, compose, Query} from 'react-apollo'
 import gql from 'graphql-tag'
+import _ from 'lodash'
 
 import InfoItem from './InfoItem'
 
 class InfoList extends React.Component {
+  componentDidUpdate () {
+    window.loadMorePosts = this.props.loadMorePosts
+  }
+
   render () {
     const { data } = this.props
-    if (data.loading || data.error) return null
     const { instagramItem } = data
+    console.log(instagramItem)
     const { id, name, url, infoConnection } = instagramItem
     return (
       <div>
@@ -22,18 +27,19 @@ class InfoList extends React.Component {
         <List celled>
           {infoConnection.edges.map(edge => <InfoItem  {...edge.node} />)}
         </List>
+        <button onClick={() => this.props.loadMorePosts()} >More</button>
       </div>
     )
   }
 }
 
 const instagramItemQuery = gql`
-  query instagramItem($id: ID!) {
+  query instagramItem($id: ID!, $cursor: String, $limit: Int) {
     instagramItem(id: $id) {
       id
       name
       url
-      infoConnection {
+      infoConnection (cursor: $cursor, limit: $limit) {
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -54,15 +60,53 @@ const instagramItemQuery = gql`
   }
 `
 
-export default compose(
-  graphql(instagramItemQuery, {
-    options (props) {
-      const {activeItem} = props
-      return {
-        variables: {
-          id: activeItem && activeItem.id
+export default function ({ activeItem }) {
+  return (
+    <Query
+      query={instagramItemQuery}
+      variables={{id: activeItem.id}}
+    >
+      {
+        ({ data, loading, error, fetchMore }) => {
+          console.log(data)
+          if (loading) return <div>Loading</div>
+          return (
+            <InfoList
+              data={data}
+              loadMorePosts={() =>
+                fetchMore({
+                  query: instagramItemQuery,
+                  variables: {
+                    id: activeItem.id,
+                    cursor: _.last(data.instagramItem.infoConnection.edges).cursor
+                  },
+                  updateQuery (previousResult, { fetchMoreResult }) {
+                    const { instagramItem } = previousResult
+                    const { infoConnection: oldInfoConnection } = instagramItem
+                    const { instagramItem: newInstagramItem } = fetchMoreResult
+                    const { infoConnection: newInfoConnection } = newInstagramItem
+                    const newList = {
+                      ...previousResult,
+                      instagramItem: {
+                        ...instagramItem,
+                        infoConnection: {
+                          ...oldInfoConnection,
+                          pageInfo: newInfoConnection.pageInfo,
+                          edges: [
+                            ...oldInfoConnection.edges, ...newInfoConnection.edges
+                          ]
+                        }
+                      }
+                    }
+                    console.log(newList)
+                    return newList
+                  }
+                })
+              }
+            />
+          )
         }
       }
-    }
-  })
-)(InfoList)
+    </Query>
+  )
+}
