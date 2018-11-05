@@ -1,16 +1,18 @@
+import moment from 'moment'
 export default {
   InstagramItem: {
     infoConnection: async (parent, { cursor, limit }, { models }) => {
       try {
         const options = {
           where: {instagramItemId: parent.id},
-          order: [['createdAt', 'ASC']],
+          order: [['id', 'ASC']],
           limit
         }
         if (cursor) {
-          options.where.createdAt = { $gt: cursor }
+          options.where.id = { $gt: Number(cursor) }
         }
         const infos = await models.InstagramInfo.findAll(options)
+        console.log(infos.map(info => info.id))
         return {
           pageInfo: {
             hasPreviousPage: !cursor,
@@ -18,7 +20,7 @@ export default {
           },
           edges: infos.map(info => {
             return {
-              cursor: info.createdAt,
+              cursor: info.id,
               node: info
             }
           })
