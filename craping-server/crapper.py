@@ -60,6 +60,32 @@ class InstagramScraper:
         f.close()
         return results
 
+    def location_page_recent_posts(self, profile_url, post_link_prefix = "https://www.instagram.com/p/", fname = "file"):
+        results = []
+        try:
+            response = self.__request_url(profile_url)
+            json_data = self.extract_json_data(response)
+            metrics = json_data['entry_data']['LocationsPage'][0]['graphql']['location']['edge_location_to_media']["edges"]
+        except Exception as e:
+            raise e
+        else:
+            for node in metrics:
+                node = node.get('node')
+                if node and isinstance(node, dict):
+                    title = len(node['edge_media_to_caption']['edges']) > 0 and node['edge_media_to_caption']['edges'][0]['node']['text'] or 'No title'
+                    number_of_comments = node['edge_media_to_comment']['count']
+                    image = node['display_url']
+                    number_of_likes = node['edge_liked_by']['count']
+                    shortcode = node['shortcode']
+                    res = {}
+                    res['comments'] = self.extract_link_and_comments(post_link_prefix + shortcode)
+                    res['title'] = title
+                    res['number_of_comments'] = number_of_comments
+                    res['image'] = image
+                    res['number_of_likes'] = number_of_likes
+                    results.append(res)
+        return results
+
     def profile_page_recent_posts(self, profile_url, post_link_prefix = "https://www.instagram.com/p/", fname = "file"):
         results = []
         try:

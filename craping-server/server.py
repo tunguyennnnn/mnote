@@ -10,8 +10,9 @@ def crape():
     if not request.json or not 'url' in request.json:
         abort(400)
     url = request.json.get('url')
+
     crapper = InstagramScraper()
-    results = crapper.profile_page_recent_posts(url)
+    results = ('location' in url) and crapper.location_page_recent_posts(url) or crapper.profile_page_recent_posts(url)
     return jsonify({'results': results}), 201
 
 if __name__ == '__main__':
