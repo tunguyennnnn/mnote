@@ -22,9 +22,6 @@ services:
     restart: always
   server:
     image: stream-server:0.0.1
-    volumes:
-      - ./server:/usr/src/app
-      - /usr/src/app/node_modules
     depends_on:
       - postgres
     ports:
@@ -35,14 +32,12 @@ services:
       DB_HOST: postgres
       REDIS_HOST: redis
       CRAPING_HOST: craping-server
-    command: npm run start:dev
+    command: npm start
     restart: on-failure
   craping-server:
     networks:
       - webnetwork
     image: craping-service:0.0.1
-    volumes:
-      - ./craping-server:/usr/src/app
     ports:
       - "5000:5000"
     command: python3 server.py
