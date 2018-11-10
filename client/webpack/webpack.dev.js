@@ -9,7 +9,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: commonPaths.outputPath,
-    publicPath: isDev ? '/' : '/player_documents'
+    publicPath: '/'
   },
   module: {
     rules: [

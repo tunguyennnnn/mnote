@@ -1,18 +1,17 @@
 const configPath = require('./config.path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const copyFolders = [
-  {
-    from: configPath.imagesFolder,
-    to: configPath.outputImageFolder,
-    toType: 'dir'
-  }
-]
+// const copyFolders = [
+//   {
+//     from: configPath.imagesFolder,
+//     to: configPath.outputImageFolder,
+//     toType: 'dir'
+//   }
+// ]
 
 module.exports = {
   mode: 'production',
   output: {
-    publicPath: '/player_documents',
     filename: `[name].[hash].js`,
     path: configPath.outputPath,
     chunkFilename: '[name].[chunkhash].js'
@@ -30,8 +29,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CopyWebpackPlugin(copyFolders)
-  ],
   devtool: 'source-map'
 }

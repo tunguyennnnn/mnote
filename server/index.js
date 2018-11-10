@@ -15,11 +15,12 @@ server.listen(4000, () => {
   console.log('app listen to port 4000')
 })
 
-app.get('/helloworld', (req, res, next) => {
-  res.json({ message: 'hello world' })
-})
-
 app.all('*', cors())
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.get('/instagram', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 app.use(
   '/graphiql',
