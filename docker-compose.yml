@@ -21,7 +21,7 @@ services:
       POSTGRES_DB: v_database
     restart: always
   server:
-    image: stream-server:0.0.1
+    image: tunguyenuni/mysite-server:latest
     volumes:
       - ./server:/usr/src/app
       - /usr/src/app/node_modules
@@ -40,7 +40,7 @@ services:
   craping-server:
     networks:
       - webnetwork
-    image: craping-service:0.0.1
+    image: tunguyenuni/craping-service:0.0.1
     volumes:
       - ./craping-server:/usr/src/app
     ports:

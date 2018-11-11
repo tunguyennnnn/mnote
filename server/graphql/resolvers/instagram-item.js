@@ -33,7 +33,7 @@ export default {
   Query: {
     instagramItem: async (parent, { id }, { models, user }) => {
       try {
-        return await models.InstagramItem.findOne({ id })
+        return await models.InstagramItem.findOne({ where: {id} })
       } catch (e) {
         throw e
       }

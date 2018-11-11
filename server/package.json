@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production babel-node index.js",
     "start:dev": "nodemon index.js --exec babel-node",
-    "docker:build": "docker build -t stream-server:0.0.1 ."
+    "docker:build": "docker build -t tunguyenuni/mysite-server:latest ."
   },
   "dependencies": {
     "apollo-server-express": "^2.1.0",
