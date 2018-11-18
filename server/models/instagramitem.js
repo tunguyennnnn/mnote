@@ -19,8 +19,15 @@ module.exports = (sequelize, DataTypes) => {
           const { data: {results} } = response
           return await sequelize.models.InstagramInfo.bulkCreate(
             results.map(r => {
-              const {comments, number_of_likes, number_of_comments, image} = r
-              return {comments, numberOfLikes: number_of_likes, numberOfComments: number_of_comments, image, instagramItemId: item.id}
+              const {comments, number_of_likes, number_of_comments, image, number_of_followers} = r
+              return {
+                comments,
+                numberOfLikes: number_of_likes,
+                numberOfComments: number_of_comments,
+                image,
+                instagramItemId: item.id,
+                numberOfFollowers: number_of_followers
+              }
             })
           )
         } catch (e) {

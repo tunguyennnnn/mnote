@@ -14,6 +14,9 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      numberOfFollowers: {
+        type: Sequelize.INTEGER
+      },
       numberOfComments: {
         type: Sequelize.INTEGER
       },
