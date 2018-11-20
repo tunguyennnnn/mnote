@@ -12,3 +12,5 @@ RUN npm install --quite
 COPY . .
 
 EXPOSE 4000
+
+CMD npm start

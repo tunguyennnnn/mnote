@@ -21,7 +21,7 @@ services:
       POSTGRES_DB: v_database
     restart: always
   server:
-    image: tunguyenuni/mysite-server:latest
+    image: docker.io/tunguyenuni/mysite-server:latest
     depends_on:
       - postgres
     ports:
@@ -37,7 +37,7 @@ services:
   craping-server:
     networks:
       - webnetwork
-    image: tunguyenuni/craping-service:0.0.1
+    image: docker.io/tunguyenuni/craping-service:0.0.1
     ports:
       - "5000:5000"
     command: python3 server.py
