@@ -29,7 +29,9 @@
     "react-router-redux": "^4.0.8",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.3.3",
-    "semantic-ui-react": "^0.83.0"
+    "semantic-ui-react": "^0.83.0",
+    "slate": "^0.44.6",
+    "slate-react": "^0.21.12"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

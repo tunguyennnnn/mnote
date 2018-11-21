@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 
 import {
   HomePage,
-  InstagramHelper
+  InstagramHelper,
+  MyNotesPage
 } from './containers'
 
 export default class App extends React.Component {
@@ -12,6 +13,7 @@ export default class App extends React.Component {
       <div>
         <Switch>
           <Route exact path='/instagram' component={InstagramHelper} />
+          <Route exact path='/mynotes' component={MyNotesPage} />
           <Route exact path='/' component={HomePage} />
         </Switch>
       </div>
