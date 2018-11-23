@@ -1,0 +1,1 @@
+export ThreadEditor from './editor'

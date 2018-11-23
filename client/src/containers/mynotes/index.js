@@ -1,0 +1,1 @@
+export MyNote from './MyNote'
