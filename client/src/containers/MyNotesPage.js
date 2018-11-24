@@ -1,6 +1,9 @@
+import './MyNotePage.scss'
+
 import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Card } from 'semantic-ui-react'
 
 import { MyNote } from './mynotes'
 
@@ -10,10 +13,14 @@ class MyNotesPage extends React.Component {
     const { edges } = threads
 
     return (
-      <div>
-        {
-          edges.map(({ node }) => <MyNote key={`thread-${node.id}`} node={node} />)
-        }
+      <div class='mynote-page-container'>
+        <Card.Group>
+          {
+            edges.map(({ node }) =>
+              <MyNote key={`thread-${node.id}`} node={node} />
+            )
+          }
+        </Card.Group>
       </div>
     )
   }

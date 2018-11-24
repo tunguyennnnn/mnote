@@ -1,10 +1,13 @@
+import { Block } from 'slate'
+
 export default {
   document: {
     nodes: [
       { match: { type: 'title' }, min: 1, max: 1},
-      { match: { type: 'paragraph'} }
+      { match: { type: 'paragraph'}, min: 1 }
     ],
     normalize: (editor, { code, node, child, index }) => {
+      console.log(code)
       switch (code) {
         case 'child_type_invalid': {
           const type = index === 0 ? 'title' : 'paragraph'

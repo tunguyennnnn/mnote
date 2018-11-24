@@ -21,6 +21,6 @@ export default `
 
   type Mutation {
     createThread: Thread
-    updateThread (id: ID!, title: String = "", detail: JSON = []): Thread
+    updateThread (id: ID!, detail: JSON! = []): Thread
   }
 `

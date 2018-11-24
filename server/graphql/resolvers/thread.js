@@ -40,11 +40,11 @@ export default {
         throw e
       }
     },
-    updateThread: async (parent, { id, title, detail }, { models }) => {
+    updateThread: async (parent, { id, detail }, { models }) => {
       try {
         const thread = await models.Thread.findOne({ where: { id } })
         if (!thread) throw new Error(`Not found thread with ${id}`)
-        return await thread.update({ title, detail })
+        return await thread.update({ detail })
       } catch (e) {
         console.log(e)
         throw e
