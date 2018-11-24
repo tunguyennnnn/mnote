@@ -1,19 +1,44 @@
-import './MyNotePage.scss'
+import './mynotes/MyNotePage.scss'
 
 import React from 'react'
-import { Query } from 'react-apollo'
+import { Query, compose, graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Card } from 'semantic-ui-react'
 
-import { MyNote } from './mynotes'
+import { MyNote, NoteMenu } from './mynotes'
 
 class MyNotesPage extends React.Component {
+  createNote = async () => {
+    try {
+      const { createNote } = this.props
+      const response = await createNote({
+        variables: {},
+        update: (proxy, { data: { newNote }  }) => {
+          console.log(newNote)
+          const data = proxy.readQuery({ query: myNotesQuery, variables: {} })
+          console.log(data)
+          data.threads.edges = [
+            { cursor: newNote.updatedAt, node: newNote, __typename: "ThreadConnectionEdge" },
+            ...data.threads.edges
+          ]
+          proxy.writeQuery({ query: myNotesQuery, data })
+        }
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render () {
-    const { threads } = this.props
+    const { data } = this.props
+    if (data.loading) return null
+    const { threads } = data
+    // const { threads } = this.props
     const { edges } = threads
 
     return (
       <div class='mynote-page-container'>
+        <NoteMenu createNote={this.createNote} />
         <Card.Group>
           {
             edges.map(({ node }) =>
@@ -36,7 +61,6 @@ const myNotesQuery = gql`
         cursor
         node {
           id
-          title
           detail
         }
       }
@@ -44,18 +68,23 @@ const myNotesQuery = gql`
   }
 `
 
-export default function () {
-  return (
-    <Query
-      query={myNotesQuery}
-      variables={{}}
-    >
-      {
-        ({ data, loading, error, fetchMore }) => {
-          if (loading) return <div>...</div>
-          return <MyNotesPage {...data} />
-        }
+const createNoteMutation = gql`
+  mutation createThread {
+    newNote: createThread {
+      id
+      detail
+      updatedAt
+    }
+  }
+`
+
+export default compose(
+  graphql(myNotesQuery, {
+    options (props) {
+      return {
+        variables: {}
       }
-    </Query>
-  )
-}
+    }
+  }),
+  graphql(createNoteMutation, { name: 'createNote' })
+)(MyNotesPage)
