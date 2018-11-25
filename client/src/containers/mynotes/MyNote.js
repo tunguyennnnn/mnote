@@ -16,7 +16,7 @@ class MyNote extends React.Component {
   }
 
   render () {
-    const { node, updateNote } = this.props
+    const { node, updateNote, deleteNote } = this.props
     const { id, detail } = node
     const { view } = this.state
     return (
@@ -29,6 +29,7 @@ class MyNote extends React.Component {
             {
               !view && <Icon link name='sticky note' onClick={() => this.setState({ view: true })} />
             }
+            <Icon link name='trash' onClick={deleteNote} />
           </div>
           <ThreadEditor id={id}
             content={detail}

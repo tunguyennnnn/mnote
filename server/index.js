@@ -21,6 +21,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/instagram', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
+app.get('/mynotes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 app.use(
   '/graphiql',

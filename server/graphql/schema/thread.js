@@ -3,6 +3,7 @@ export default `
     id: Int!
     title: String!
     detail: JSON!
+    updatedAt: String!
   }
 
   type ThreadConnectionEdge {
@@ -22,5 +23,6 @@ export default `
   type Mutation {
     createThread: Thread
     updateThread (id: ID!, detail: JSON! = []): Thread
+    deleteThread (id: ID!): Boolean
   }
 `

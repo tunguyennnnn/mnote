@@ -28,7 +28,7 @@ export default class extends React.Component {
         const { document } = value
         const detail = document.toJS().nodes
         const { id, update } = this.props
-        console.log(update({ variables: { id, detail } }))
+        update({ variables: { id, detail } })
       })
   }
 
@@ -49,7 +49,6 @@ export default class extends React.Component {
 
   render () {
     const { readOnly } = this.props
-    console.log(this.state.value)
     return (
       <Editor
         value={this.state.value}

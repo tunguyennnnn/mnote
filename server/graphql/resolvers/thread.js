@@ -49,6 +49,15 @@ export default {
         console.log(e)
         throw e
       }
+    },
+    deleteThread: async (parent, { id }, { models }) => {
+      try {
+        await models.Thread.destroy( { where: { id } })
+        return true
+      } catch (e) {
+        console.log(e)
+        return false
+      }
     }
   }
 }
