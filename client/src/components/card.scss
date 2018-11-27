@@ -1,0 +1,23 @@
+.card-container {
+  margin: 10px;
+  padding: 10px;
+  background: white;
+  border: 0px solid;
+  border-radius: 5px;
+
+  .card-title {
+    color: #f64c3f;
+  }
+
+  .card-technology {
+    color: #8b99a0;
+  }
+
+  .card-time {
+    color: #8b99a0;
+  }
+
+  .highlight {
+    color: #f64c3f;
+  }
+}

@@ -2,7 +2,7 @@ import './myresume/MyResume.scss'
 import React from 'react'
 
 import { Container } from 'semantic-ui-react'
-import { Header, Navigation } from './myresume'
+import { Header, Navigation, Body } from './myresume'
 
 export default class HomePage extends React.Component {
   render () {
@@ -11,6 +11,7 @@ export default class HomePage extends React.Component {
         <Container>
           <Header />
           <Navigation />
+          <Body />
         </Container>
       </div>
     )

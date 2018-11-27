@@ -6,13 +6,9 @@ export default class Navigation extends React.Component {
     return (
       <div>
         <div class='navigation-container'>
-          <div class='about-me'>
-            My mission in life is to encourage others to share knowlege and personal experiences.
-            <br />
-          </div>
+          <p class='about-me'>My mission in life is to encourage others to share knowlege and personal experiences.</p>
           <div class='navigation-mynote'>
-
-            <Link target='_blank' to='/mynotes'>Click here</Link> if you want to see my notes and contribute
+            <p><Link target='_blank' to='/mynotes'>Click here</Link> if you want to see my notes and contribute</p>
           </div>
         </div>
       </div>
