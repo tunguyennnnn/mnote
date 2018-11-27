@@ -1,17 +1,30 @@
 Arguments: 
-  /usr/local/bin/node /opt/yarn-v1.5.1/bin/yarn.js run start:dev
+  /Users/tunguyen/.nvm/versions/node/v8.9.4/bin/node /Users/tunguyen/.nvm/versions/node/v8.9.4/bin/yarn
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  /Users/tunguyen/Downloads/google-cloud-sdk/bin:/Users/tunguyen/.nvm/versions/node/v8.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
-  1.5.1
+  1.10.1
 
 Node version: 
-  9.11.2
+  8.9.4
 
 Platform: 
-  linux x64
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/flatmap-stream/-/flatmap-stream-0.1.1.tgz: Request failed "404 Not Found"
+      at ResponseError.ExtendableBuiltin (/Users/tunguyen/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:218:66)
+      at new ResponseError (/Users/tunguyen/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:324:124)
+      at Request.<anonymous> (/Users/tunguyen/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:57838:26)
+      at emitOne (events.js:116:13)
+      at Request.emit (events.js:211:7)
+      at Request.module.exports.Request.onRequestResponse (/Users/tunguyen/.nvm/versions/node/v8.9.4/lib/node_modules/yarn/lib/cli.js:121043:10)
+      at emitOne (events.js:116:13)
+      at ClientRequest.emit (events.js:211:7)
+      at HTTPParser.parserOnIncomingClient (_http_client.js:551:21)
+      at HTTPParser.parserOnHeadersComplete (_http_common.js:116:23)
 
 npm manifest: 
   {
@@ -22,11 +35,12 @@ npm manifest:
     "scripts": {
       "start": "cross-env NODE_ENV=production babel-node index.js",
       "start:dev": "nodemon index.js --exec babel-node",
-      "docker:build": "docker build -t stream-server:0.0.1 ."
+      "docker:build": "docker build -t tunguyenuni/mysite-server:latest ."
     },
     "dependencies": {
       "apollo-server-express": "^2.1.0",
       "apollo-upload-server": "^7.1.0",
+      "axios": "^0.18.0",
       "bcrypt": "^3.0.1",
       "body-parser": "^1.18.3",
       "compression": "^1.7.3",
@@ -39,7 +53,6 @@ npm manifest:
       "graphql-server-express": "^1.4.0",
       "graphql-tools": "^4.0.1",
       "graphql-type-json": "^0.2.1",
-      "grpc": "^1.15.1",
       "jsonwebtoken": "^8.3.0",
       "lodash": "^4.17.11",
       "merge-graphql-schemas": "^1.5.7",
@@ -4298,18 +4311,3 @@ Lockfile:
     version "0.8.9"
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.9.tgz#0475c760ff0eda046bbdfa4dc3f95d392807ac53"
     integrity sha512-Y9kPzjGvIZ5jchSlqlCpBW3I82zBBL4z+ulXDRVA1NwsKzjt5kwAi+gOYIy0htNkfuehGZZtP5mRXHRV6TjDWw==
-
-Trace: 
-  Error: Command failed.
-  Exit code: 127
-  Command: sh
-  Arguments: -c nodemon index.js --exec babel-node
-  Directory: /usr/src/app
-  Output:
-  
-      at ProcessTermError.MessageError (/opt/yarn-v1.5.1/lib/cli.js:186:110)
-      at new ProcessTermError (/opt/yarn-v1.5.1/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/opt/yarn-v1.5.1/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:180:13)
-      at maybeClose (internal/child_process.js:936:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
