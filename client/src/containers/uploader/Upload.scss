@@ -1,0 +1,25 @@
+@media only screen and (max-width: 500px) {
+  .upload-container {
+    padding: 10px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .upload-container {
+    padding: 10px 15vw 10px 15vw;
+  }
+}
+
+.upload-container {
+	.dropzone-container {
+		width: 100%;
+		height: 50vh;
+		border: 2px dashed black;
+
+		.dropzone-header {
+			padding: 1vh;
+			color: #f64c3f;
+			text-align: center;
+		}
+	}
+}

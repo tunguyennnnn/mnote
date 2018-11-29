@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react'
 import { Header, Navigation, Body } from './myresume'
 
 export default class HomePage extends React.Component {
-  render () {
+  render() {
     return (
       <div class='mypage-container'>
         <Container>
