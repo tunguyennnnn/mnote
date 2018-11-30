@@ -1,7 +1,7 @@
 import './uploader/Upload.scss'
 import React from 'react'
 import Dropzone from 'react-dropzone'
-import { Header } from 'semantic-ui-react'
+import axios from 'axios'
 import { ImageEditor } from './uploader'
 
 const TypeToComponent = {
@@ -14,11 +14,24 @@ export default class MediaUploader extends React.Component {
 		fileType: null
 	}
 
-	onDrop = ([file]) => {
-		const [type, extension] = file.type.split('/')
-		console.log(type)
-		if (type !== 'image' && type !== 'video') return
-		this.setState({ file, fileType: type })
+	onDrop = async ([file]) => {
+		try {
+			console.log(file)
+			const [type, extension] = file.type.split('/')
+			if (type !== 'image' && type !== 'video') return
+			// this.setState({ file, fileType: type })
+			const bodyFormData = new FormData()
+			bodyFormData.set('file', file)
+			const response = await axios({
+				method: 'POST',
+				url: 'http://localhost:4001/upload',
+				data: bodyFormData,
+				config: { headers: { 'Content-Type': 'multipart/form-data' }}
+			})
+			console.log(response)
+		} catch (e) {
+			console.log(e)
+		}
 	}
 
   render () {

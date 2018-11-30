@@ -16,12 +16,13 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" \
     && chmod +x /entrypoint.sh
 
 RUN go get github.com/tockins/realize
+RUN go get github.com/satori/go.uuid
 
 WORKDIR $GOPATH
 
 COPY . .
 
-EXPOSE 6000
+EXPOSE 4001
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["realize", "start"]

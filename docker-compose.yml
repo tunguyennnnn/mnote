@@ -54,7 +54,7 @@ services:
     volumes: 
       - ./media-processor:${GO_PROJECT_DIR}
     ports:
-      - "6000:6000"
+      - "4001:4001"
     environment:
       GO_WORK_DIR: "${GO_PROJECT_DIR}/app"
     restart: on-failure
