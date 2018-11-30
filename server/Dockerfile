@@ -1,5 +1,4 @@
-from node:9
-MAINTAINER tunguyenuni@gmail.com
+FROM node:9
 
 WORKDIR /usr/src/app
 
