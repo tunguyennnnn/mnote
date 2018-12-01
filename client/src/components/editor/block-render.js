@@ -1,3 +1,4 @@
+import './render.scss'
 import React from 'react'
 
 import Math from './custom-render/Math'
@@ -19,18 +20,28 @@ import {
 export default {
   [TITLE]: (props) => <h3 {...props.attributes}>{props.children}</h3>,
   [PARAGRAPH]: (props) =>
-    <p {...props.attributes}>{props.children}</p>,
+    <p {...props.attributes} class='editor-p'>{props.children}</p>,
   [ORDERED_LIST]: (props) => 
-    <ol {...props.attributes}>{props.children}</ol>,
+    <ol {...props.attributes} class='editor-ol'>{props.children}</ol>,
   [UNORDERED_LIST]: (props) => 
-    <ul {...props.attributes}>{props.children}</ul>,
+    <ul {...props.attributes} class='editor-ul'>{props.children}</ul>,
   [LIST_ITEM]: (props) => 
-    <li {...props.attributes}>{props.children}</li>,
+    <li {...props.attributes} class='editor-li'>{props.children}</li>,
   [TABLE]: (props) =>
-    <tb {...this.attributes}>{props.children}</tb>,
+    <tb {...this.attributes} class='editor-tb'>{props.children}</tb>,
   [TABLE_ROW]: (props) =>
-    <tr {...this.attributes}>{props.children}</tr>,
+    <tr {...this.attributes} class='editor-tr'>{props.children}</tr>,
   [TABLE_CELL]: (props) => 
-    <td {...this.attributes}>{props.children}</td>,
-  [MATH]: (props) => <Math {...props} />
+    <td {...this.attributes} class='editor-tc'>{props.children}</td>,
+  [MATH]: (props) => <Math {...props} />,
+  [CODE]: (props) => {
+    const { attributes, children } = props
+    return (
+      <pre class='editor-code' {...attributes}>
+        <code>{children}</code>
+      </pre>
+    )
+  },
+  [CODE_LINE]: (props) =>
+      <div class='editor-code-line' {...props.attributes}>{props.children}</div>
 }

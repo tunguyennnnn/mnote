@@ -23,8 +23,8 @@ export default {
           PARAGRAPH, CODE, MATH, ORDERED_LIST, UNORDERED_LIST, TABLE
         ].map(type => ({ type }))
       , min: 1 },
-
     ],
+    last: { type: PARAGRAPH },
     normalize: (editor, { code, node, child, index }) => {
       console.log(code, index)
       switch (code) {
@@ -35,6 +35,10 @@ export default {
         case 'child_min_invalid': {
           const block = Block.create(index === 0 ? TITLE : PARAGRAPH)
           return editor.insertNodeByKey(node.key, index, block)
+        }
+        case 'last_child_type_invalid': {
+          const paragraph = Block.create(PARAGRAPH)
+          return editor.insertNodeByKey(node.key, node.nodes.size, paragraph)
         }
       }
     }
