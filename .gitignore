@@ -3,3 +3,4 @@ node_modules
 postgres_data
 *.pyc
 __pycache__
+uploads
