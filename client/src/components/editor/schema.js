@@ -26,7 +26,7 @@ export default {
 
     ],
     normalize: (editor, { code, node, child, index }) => {
-      console.log(code)
+      console.log(code, index)
       switch (code) {
         case 'child_type_invalid': {
           const type = index === 0 ? TITLE : PARAGRAPH

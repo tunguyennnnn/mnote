@@ -1,12 +1,16 @@
+import './editor.scss'
 import React from 'react'
 import { Editor } from 'slate-react'
 import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
 import { Subject } from 'rxjs/Subject'
 
+import InlineMenu from './InlineMenu'
+import BlockWrapper from './wrappers/BlockWrapper'
 import { debounceTime } from 'rxjs/operators'
 import schema from './schema'
 import blockRender from './block-render'
+import inlineRender from './inline-render'
 
 export default class extends React.Component {
   constructor (props) {
@@ -44,20 +48,50 @@ export default class extends React.Component {
   renderNode = (props, editor, next) => {
     const { node } = props
     if (!blockRender[node.type]) return next()
-    return blockRender[node.type].call(null, props)
+    return (
+      <BlockWrapper slateProps={props} editor={editor} type={node.type}>
+        {blockRender[node.type].call(null, props)}
+      </BlockWrapper>
+    )
+  }
+
+  renderMark = (props, editor, next) => {
+    const { node } = props
+    if (!inlineRender[node.type]) return next()
+    return inlineRender[node.type].call(null, props)
+  }
+
+  renderEditor = (props, editor, next) => {
+    const { value } = this.state
+    this.editor = editor
+    const children = next()
+    return (
+      <React.Fragment>
+        {children}
+        <InlineMenu
+          value={value}
+          editor={editor}
+          onChange={this.onChange}
+        />
+      </React.Fragment>
+    )
   }
 
   render () {
     const { readOnly } = this.props
     return (
-      <Editor
-        value={this.state.value}
-        placeholder='Some fact...'
-        readOnly={readOnly}
-        schema={schema}
-        onChange={this.onChange}
-        renderNode={this.renderNode}
-      />
+      <div class='editor-container'>
+        <Editor
+          value={this.state.value}
+          renderEditor={this.renderEditor}
+          placeholder='Some fact...'
+          readOnly={readOnly}
+          schema={schema}
+          onChange={this.onChange}
+          renderNode={this.renderNode}
+          renderMark={this.renderMark}
+        />
+      </div>
     )
   }
 }

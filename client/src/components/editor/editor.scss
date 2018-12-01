@@ -1,0 +1,23 @@
+
+.inline-menu-container {
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 3px;
+  position: fixed;
+  display: none;
+  background: white;
+  transition: opacity .75s;
+}
+
+
+@media only screen and (min-width: 480px) {
+  .editor-container {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .editor-container {
+    font-size: 1.5rem;
+  }
+}
