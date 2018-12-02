@@ -1,7 +1,32 @@
 .editor-paragraph-wrapper {
   padding: 2px 5px 2px 5px;
-  margin-left: 10px;
+  margin: 2vh 0px 2vh 10px;
   position: relative;
+
+  .menu-icon-container {
+    position: absolute;
+    left: -1.2rem;
+    top: 2px;
+    i {
+      font-size: 1rem;
+    }
+  }
+
+  .menu-container {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border: solid grey;
+    border-width: 1px 2px 1px 2px;
+    background: white;
+    padding: 2px;
+    border-radius: 4px;
+  }
+}
+
+.editor-other-block-wrapper {
+  position: relative;
+  margin: 2vh 0px 2vh 10px;
 
   .menu-icon-container {
     position: absolute;

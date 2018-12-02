@@ -40,7 +40,7 @@ export default class ParagraphWrapper extends React.Component {
     return insertInParagraphBlock(editor, type, node)
   }
 
-  renderMenu () {
+   renderMenu () {
     const { isFocused, node } = this.props
     const { openMenu } = this.state
     const actionList = _.isEmpty(_.trim(node.text)) ? EmpyParagraphActionList : NonEmpyParagraphActionList
@@ -66,7 +66,9 @@ export default class ParagraphWrapper extends React.Component {
     const { isFocused } = this.props
     return (
       <div class={`editor-paragraph-wrapper ${isFocused && 'focus'}`}>
-        {children}
+        <div onClick={() => this.setState({ openMenu: false })}>
+          {children}
+        </div>
         {this.renderMenuIcon()}
         {this.renderMenu()}
       </div>
