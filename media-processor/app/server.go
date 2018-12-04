@@ -34,7 +34,9 @@ func handleUpload(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Not a post")
 		return
 	}
+
 	reader, err := req.MultipartReader()
+
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Error uploading file", http.StatusInternalServerError)
@@ -49,7 +51,7 @@ func handleUpload(w http.ResponseWriter, req *http.Request) {
 		if err == io.EOF {
 			break
 		}
-
+		fmt.Println("Filename is", part.FileName())
 		if part.FileName() == "" {
 			continue
 		}

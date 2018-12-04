@@ -50,7 +50,6 @@ export default class MediaUploader extends React.Component {
 				<Dropzone 
 					multiple={false}
 					className='dropzone-container'
-					maxSize={100 * 1024}
 					onDrop={this.onDrop}
 				>
 					<p class='dropzone-header'>Drop your file here or click to upload</p>

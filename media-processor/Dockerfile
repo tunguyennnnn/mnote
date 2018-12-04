@@ -1,4 +1,9 @@
+FROM jrottenberg/ffmpeg:3.3-alpine
+FROM jlesage/handbrake
 FROM golang:1.11.2-alpine
+
+# copy ffmpeg bins from first image
+COPY --from=0 / /
 
 COPY root /
 RUN apk add --no-cache ca-certificates \
@@ -17,6 +22,7 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" \
 
 RUN go get github.com/tockins/realize
 RUN go get github.com/satori/go.uuid
+RUN go get github.com/h2non/filetype
 
 WORKDIR $GOPATH
 
