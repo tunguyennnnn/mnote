@@ -80,10 +80,10 @@ func handleUpload(w http.ResponseWriter, req *http.Request) {
 			c <- true
 		}()
 
-		go func() {
-			ConvertToMp4(jobid, part.FileName())
-			c <- true
-		}()
+		// go func() {
+		// 	ConvertToMp4(jobid, part.FileName())
+		// 	c <- true
+		// }()
 
 		<-c
 		<-c

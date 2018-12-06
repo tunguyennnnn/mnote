@@ -45,14 +45,14 @@ func ConvertToMp4(jobid string, filename string) (string, error) {
 	makeDeliverDir(jobid)
 	log.Print("Encoding ", filename, " to mp4")
 	outFname := "deliver/out.mp4"
-	cmd := exec.Command("handbrake",
+	cmd := exec.Command("ffmpeg",
 		"-i", filename,
-		"-o", outFname,
-		"--encoder", "x264",
-		"--vb", "1800",
-		"--ab", "128",
-		"--two-pass",
-		"--optimize")
+		"-o", "mp4",
+		"-vcodec", "libx264",
+		"-preset", "fast",
+		"-profile:v", "main",
+		"-acodec", "aac",
+		outFname)
 
 	cmd.Dir = "uploads/" + jobid
 

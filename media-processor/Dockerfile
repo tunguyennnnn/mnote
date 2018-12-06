@@ -1,5 +1,4 @@
 FROM jrottenberg/ffmpeg:3.3-alpine
-FROM jlesage/handbrake
 FROM golang:1.11.2-alpine
 
 # copy ffmpeg bins from first image
