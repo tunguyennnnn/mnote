@@ -1,0 +1,24 @@
+export default {
+  Query: {
+    user: async (p, { id }, { models }) => {
+      try {
+        return await models.User.findOne({ id })
+      } catch (e) {
+        throw e
+      }
+    }
+  },
+  Mutation: {
+    loginOrSignup: async (p, { sub, email, metaData }, { models }) => {
+      try {
+        const user = (await models.User.findOne({ where: { sub, email } })) 
+        if (user) {
+          return user.update({ metaData })
+        }
+        return await models.User.create({ sub, email, metaData })
+      } catch (e) {
+        throw e
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@
     "apollo-link-context": "^1.0.9",
     "apollo-link-http": "^1.5.5",
     "apollo-upload-client": "^9.0.0",
+    "auth0-lock": "^11.12.1",
     "axios": "^0.18.0",
     "cssnano": "^4.1.7",
     "graphql": "^14.0.2",

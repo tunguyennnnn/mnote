@@ -8,6 +8,10 @@ import {
   MediaUploader
 } from './containers'
 
+import {
+  AuthenticationRoute
+} from './components'
+
 export default class App extends React.Component {
   render () {
     return (
@@ -15,8 +19,8 @@ export default class App extends React.Component {
         <Switch>
           <Route exact path='/media' component={MediaUploader} />
           <Route exact path='/instagram' component={InstagramHelper} />
-          <Route exact path='/mynotes' component={MyNotesPage} />
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/myprofile' component={HomePage} />
+          <AuthenticationRoute exact path='/' component={MyNotesPage} />
         </Switch>
       </div>
     )
