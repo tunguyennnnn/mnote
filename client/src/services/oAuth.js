@@ -1,9 +1,28 @@
 import Auth0Lock from 'auth0-lock'
-import loginOrCreateUser from './auth-helpers/loginOrCreate'
+import { GraphQLClient } from 'graphql-request'
+import gql from 'graphql-tag'
 
 const Configs = {
   clientId: 'n9Yp7wEix6Zg23NETEzGhM9eq2kSj7wT',
   domain: 'oowrite.auth0.com'
+}
+
+const loginOrSignupMutation = gql`
+  mutation loginOrSignup ($sub: String!, $email: String!, $metaData: JSON!) {
+    user: loginOrSignup (sub: $sub, email: $email, metaData: $metaData) {
+      id
+    }
+  }
+`
+
+export async function loginOrCreateUser ({ sub, email, metaData }) {
+  try {
+    const client = new GraphQLClient('/graphql')
+    const response = await client.request(loginOrSignupMutation, { sub, email, metaData })
+    console.log(response)
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 export const lock = new Auth0Lock(
@@ -11,7 +30,7 @@ export const lock = new Auth0Lock(
   Configs.domain
 )
 
-function saveToken (authResult) {
+export function saveToken (authResult) {
   console.log(authResult)
   const {accessToken, expiresIn, tokenType} = authResult
   localStorage.setItem('accessToken', accessToken)
@@ -19,22 +38,6 @@ function saveToken (authResult) {
   localStorage.setItem('tokenType', tokenType)
 }
 
-lock.on('authenticated', (authResult) => {
-  console.log(authResult)
-  lock.getUserInfo(authResult.accessToken, async (err, profile) => {
-    try {
-      if (err) {
-        console.log(err)
-        return
-      }
-      saveToken(authResult)
-      const { sub, email, ...metaData } = profile
-      await loginOrCreateUser({ sub, email, metaData })
-    } catch (e) { 
-      console.log(e)
-    }
-  })
-})
 
 export function isAuthenticated () {
   const {accessToken, expiresIn} = localStorage
