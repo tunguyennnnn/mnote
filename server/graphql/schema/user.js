@@ -11,6 +11,6 @@ export default `
   }
 
   type Mutation {
-    loginOrSignup (sub: String!, email: String!, metaData: JSON!): User
+    loginOrSignup (sub: String!, email: String!, metaData: JSON!, idToken: String!): User
   }
 `

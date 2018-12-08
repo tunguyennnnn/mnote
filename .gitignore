@@ -4,3 +4,4 @@ postgres_data
 *.pyc
 __pycache__
 uploads
+.env

@@ -9,24 +9,16 @@ export default class AuthenticationRoute extends React.Component {
   }
 
   listenToAuthentication () {
-    AuthService.lock.on('authenticated', (authResult) => {
-      AuthService.lock.getUserInfo(authResult.accessToken, async (err, profile) => {
-        try {
-          if (err) {
-            console.log(err)
-            return
-          }
-          AuthService.saveToken(authResult)
-          const { sub, email, ...metaData } = profile
-          await AuthService.loginOrCreateUser({ sub, email, metaData })
-          AuthService.lock.hide()
-          this.setState({
-            isLoggin: AuthService.isAuthenticated()
-          })
-        } catch (e) { 
-          console.log(e)
-        }
-      })
+    AuthService.lock.on('authenticated', async (authResult) => {
+      try {
+        await AuthService.saveToken(authResult)
+        AuthService.lock.hide()
+        this.setState({
+          isLoggin: AuthService.isAuthenticated()
+        })
+      } catch (e) {
+        console.log(e)
+      }
     })
   }
 

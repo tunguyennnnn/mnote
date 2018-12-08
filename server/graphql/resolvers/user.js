@@ -1,3 +1,6 @@
+import jwt from 'jsonwebtoken'
+require('dotenv').config()
+
 export default {
   Query: {
     user: async (p, { id }, { models }) => {
@@ -9,7 +12,7 @@ export default {
     }
   },
   Mutation: {
-    loginOrSignup: async (p, { sub, email, metaData }, { models }) => {
+    loginOrSignup: async (p, { sub, email, metaData, idToken }, { models }) => {
       try {
         const user = (await models.User.findOne({ where: { sub, email } })) 
         if (user) {
