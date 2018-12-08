@@ -5,7 +5,6 @@ import { createHttpLink } from 'apollo-link-http'
 
 const authLink = setContext((_, { headers }) => {
   const token = window.localStorage.getItem('idToken')
-  console.log(token)
   return {
     headers: {
       ...headers,

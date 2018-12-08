@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: ''
     },
+    userId: DataTypes.INTEGER,
     type: DataTypes.STRING,
     detail: {
       type: DataTypes.JSONB,

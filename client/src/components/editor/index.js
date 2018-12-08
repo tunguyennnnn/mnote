@@ -28,6 +28,8 @@ export default class extends React.Component {
         debounceTime(800)
       )
       .subscribe(async () => {
+        const { readOnly } = this.props
+        if (readOnly) return
         const { value } = this.state
         const { document } = value
         const detail = document.toJS().nodes
