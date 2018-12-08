@@ -4,7 +4,7 @@ import { createUploadLink } from 'apollo-upload-client'
 import { setContext } from 'apollo-link-context'
 
 const authLink = setContext((_, { headers }) => {
-  const token = window.localStorage.getItem('token')
+  const token = window.localStorage.getItem('idToken')
   return {
     headers: {
       ...headers,
@@ -14,7 +14,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: '/graphql' }),
+  link: authLink.concat(new HttpLink({ uri: '/graphql' })),
   cache: new InMemoryCache()
 })
 

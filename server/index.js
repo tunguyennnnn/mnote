@@ -7,6 +7,7 @@ import cors from 'cors'
 import path from 'path'
 import models from './models'
 import schema from './graphql'
+import { authCheck } from './services/authentication'
 
 const app = express()
 const server = require('http').createServer(app)
@@ -32,12 +33,14 @@ app.use(
   })
 )
 
+app.use(authCheck)
+
 app.use(
   '/graphql',
   bodyParser.json(),
   apolloUploadExpress({ uploadDir: './' }),
   graphqlExpress(req => ({
-    schema, context: { models }
+    schema, context: { models, user: req.user }
   }))
 )
 
