@@ -3,6 +3,7 @@ export default `
     id: Int!
     title: String!
     detail: JSON!
+    author: User
     updatedAt: String!
   }
 

@@ -13,8 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: []
     }
   }, {});
-  Thread.associate = function(models) {
-    // associations can be defined here
+  Thread.associate = (models) => {
+    Thread.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'author'
+    })
   };
   return Thread;
 };

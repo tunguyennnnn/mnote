@@ -1,4 +1,9 @@
 export default {
+  Thread: {
+    author: async (thread, args, { models }) => {
+      return await thread.getAuthor()
+    }
+  },
   Query: {
     threads: async (parent, { cursor, limit }, { models }) => {
       try {
@@ -57,7 +62,7 @@ export default {
     deleteThread: async (parent, { id }, { models, user }) => {
       try {
         if (!user) throw new Error(`Anauthorized`)
-        await models.Thread.destroy( { where: { id, userId: user.id } })
+        await models.Thread.destroy( { where: { id } })
         return true
       } catch (e) {
         console.log(e)

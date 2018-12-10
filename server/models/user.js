@@ -5,8 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     metaData: DataTypes.JSONB
   }, {});
-  User.associate = function(models) {
-    // associations can be defined here
+  User.associate = (models) => {
+    User.hasMany(models.Thread, {
+      foreignKey: 'userId',
+      as: 'threads'
+    })
   };
   return User;
 };

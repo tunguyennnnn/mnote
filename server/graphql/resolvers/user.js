@@ -15,7 +15,7 @@ export default {
     loginOrSignup: async (p, { sub, email, metaData, idToken }, { models }) => {
       try {
         const decoded = jwt.decode(idToken)
-        if (decoded.email !== email || decode.sub !== sub) throw new Error(`Invalid token`)
+        if (decoded.email !== email || decoded.sub !== sub) throw new Error(`Invalid token`)
         const user = (await models.User.findOne({ where: { sub, email } })) 
         if (user) {
           return user.update({ metaData })

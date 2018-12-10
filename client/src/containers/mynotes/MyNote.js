@@ -4,6 +4,7 @@ import { Card, Icon } from 'semantic-ui-react'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import NoteAuthor from './NoteAuthor'
 import { ThreadEditor } from '../../components'
 
 class MyNote extends React.Component {
@@ -17,11 +18,14 @@ class MyNote extends React.Component {
 
   render () {
     const { node, updateNote, deleteNote } = this.props
-    const { id, detail } = node
+    const { id, detail, author } = node
     const { view } = this.state
     return (
       <Card className='mynote-container' centered fluid>
         <Card.Content>
+          <div class='note-author-container'>
+            {author && <NoteAuthor author={author} />}
+          </div>
           <div class='note-menu-container'>
             {
               view && <Icon link name='edit' onClick={() => this.setState({ view: false })} />

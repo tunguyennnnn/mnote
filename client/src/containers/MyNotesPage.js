@@ -87,6 +87,12 @@ const myNotesQuery = gql`
         node {
           id
           detail
+          author {
+            id
+            sub
+            email
+            metaData
+          }
         }
       }
     }
@@ -99,6 +105,12 @@ const createNoteMutation = gql`
       id
       detail
       updatedAt
+      author {
+        id
+        sub
+        email
+        metaData
+      }
     }
   }
 `
