@@ -1,7 +1,15 @@
 export default {
   Thread: {
-    author: async (thread, args, { models }) => {
-      return await thread.getAuthor()
+    authorInfo: async (thread, args, { models, user }) => {
+      const author = await thread.getAuthor()
+      console.log(author)
+      return {
+        authorizationInfo: {
+          canView: true, //TODO: later with protected notes, this may be false
+          canEdit: user ? user.id === author.id : false
+        },
+        author
+      }
     }
   },
   Query: {

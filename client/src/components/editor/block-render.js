@@ -2,6 +2,7 @@ import './render.scss'
 import React from 'react'
 
 import Math from './custom-render/Math'
+import LinkBlock from './custom-render/LinkBlock'
 
 import {
   PARAGRAPH,
@@ -14,7 +15,8 @@ import {
   LIST_ITEM,
   TABLE,
   TABLE_CELL,
-  TABLE_ROW
+  TABLE_ROW,
+  LINK_BLOCK
 } from './types'
 
 export default {
@@ -34,6 +36,7 @@ export default {
   [TABLE_CELL]: (props) => 
     <td {...this.attributes} class='editor-tc'>{props.children}</td>,
   [MATH]: (props) => <Math {...props} />,
+  [LINK_BLOCK]: (props) => <LinkBlock {...props} />,
   [CODE]: (props) => {
     const { attributes, children } = props
     return (

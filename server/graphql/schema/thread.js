@@ -3,8 +3,13 @@ export default `
     id: Int!
     title: String!
     detail: JSON!
-    author: User
+    authorInfo: ThreadAuthorInfo!
     updatedAt: String!
+  }
+
+  type ThreadAuthorInfo {
+    authorizationInfo: AuthorizationInfo!
+    author: User
   }
 
   type ThreadConnectionEdge {

@@ -17,7 +17,7 @@ export function insertInParagraphBlock (editor, toType, node) {
   const {document} = value
   const parent = document.getParent(node.key)
   const index = parent.nodes.findIndex(n => n.key === node.key)
-
+  console.log(toType)
   const block = toType === TABLE ? makeTableBlock(2, 2) : Block.create(toType)
   if (_.trim(node.text) || toType === PARAGRAPH) {
     return editor.insertNodeByKey(parent.key, index + 1, block)

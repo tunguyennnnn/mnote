@@ -7,4 +7,9 @@ export default `
     hasNextPage: Boolean!
     hasPreviousPage: Boolean!
   }
+
+  type AuthorizationInfo {
+    canView: Boolean!
+    canEdit: Boolean!
+  }
 `

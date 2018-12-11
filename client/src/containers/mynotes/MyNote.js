@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, Icon } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import MyNoteHeader from './MyNoteHeader'
 import NoteAuthor from './NoteAuthor'
 import { ThreadEditor } from '../../components'
 
@@ -16,29 +17,26 @@ class MyNote extends React.Component {
     view: true
   }
 
+  updateView = (view) => {
+    this.setState({ view })
+  }
+
   render () {
     const { node, updateNote, deleteNote } = this.props
-    const { id, detail, author } = node
+    const { id, detail, author, authorInfo } = node
     const { view } = this.state
     return (
       <Card className='mynote-container' centered fluid>
         <Card.Content>
-          <div class='note-author-container'>
-            {author && <NoteAuthor author={author} />}
-          </div>
-          <div class='note-menu-container'>
-            {
-              view && <Icon link name='edit' onClick={() => this.setState({ view: false })} />
-            }
-            {
-              !view && <Icon link name='sticky note' onClick={() => this.setState({ view: true })} />
-            }
-            <Icon link name='trash' onClick={deleteNote} />
-          </div>
+          <MyNoteHeader authorInfo={authorInfo}
+            isView={view}
+            updateView={this.updateView}
+            deleteNote={deleteNote}
+          />
           <ThreadEditor id={id}
             content={detail}
             update={updateNote}
-            readOnly={this.state.view}
+            readOnly={view}
           />
         </Card.Content>
       </Card>

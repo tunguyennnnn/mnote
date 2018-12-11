@@ -11,7 +11,8 @@ import {
   ORDERED_LIST,
   UNORDERED_LIST,
   MATH,
-  CODE
+  CODE,
+  LINK_BLOCK
 } from '../types'
 
 const EmpyParagraphActionList = [
@@ -21,6 +22,7 @@ const EmpyParagraphActionList = [
   { type: TABLE, icon: 'th' },
   { type: ORDERED_LIST, icon: 'list ol' },
   { type: UNORDERED_LIST, icon: 'list alternate' },
+  { type: LINK_BLOCK, icon: 'linkify' },
   { type: 'deletion', icon: 'trash' },
 ]
 

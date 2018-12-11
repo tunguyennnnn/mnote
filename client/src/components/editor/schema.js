@@ -11,7 +11,8 @@ import {
   LIST_ITEM,
   TABLE,
   TABLE_CELL,
-  TABLE_ROW
+  TABLE_ROW,
+  LINK_BLOCK
 } from './types'
 
 
@@ -20,7 +21,7 @@ export default {
     nodes: [
       { match: { type: 'title' }, min: 1, max: 1},
       { match: [
-          PARAGRAPH, CODE, MATH, ORDERED_LIST, UNORDERED_LIST, TABLE
+          PARAGRAPH, CODE, MATH, ORDERED_LIST, UNORDERED_LIST, TABLE, LINK_BLOCK
         ].map(type => ({ type }))
       , min: 1 },
     ],
@@ -99,7 +100,7 @@ export default {
       parent: [{type: UNORDERED_LIST}, {type: ORDERED_LIST}],
       nodes: [
         {
-          match: [TABLE, ORDERED_LIST, UNORDERED_LIST, PARAGRAPH, MATH].map(type => ({ type })),
+          match: [ORDERED_LIST, UNORDERED_LIST, PARAGRAPH, MATH, LINK_BLOCK].map(type => ({ type })),
           min: 1
         }
       ],
@@ -152,7 +153,7 @@ export default {
       parent: [{type: TABLE_ROW}],
       nodes: [
         {
-          match: [ORDERED_LIST, UNORDERED_LIST, PARAGRAPH, MATH].map(type => ({ type })),
+          match: [ORDERED_LIST, UNORDERED_LIST, PARAGRAPH, MATH, LINK_BLOCK].map(type => ({ type })),
           min: 1
         }
       ],

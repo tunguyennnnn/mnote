@@ -1,7 +1,7 @@
 import './mynotes/MyNotePage.scss'
 
 import React from 'react'
-import { Query, compose, graphql } from 'react-apollo'
+import { compose, graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Card } from 'semantic-ui-react'
 
@@ -87,11 +87,17 @@ const myNotesQuery = gql`
         node {
           id
           detail
-          author {
-            id
-            sub
-            email
-            metaData
+          authorInfo {
+            authorizationInfo {
+              canView
+              canEdit
+            }
+            author {
+              id
+              sub
+              email
+              metaData
+            }
           }
         }
       }
@@ -105,11 +111,17 @@ const createNoteMutation = gql`
       id
       detail
       updatedAt
-      author {
-        id
-        sub
-        email
-        metaData
+      authorInfo {
+        authorizationInfo {
+          canView
+          canEdit
+        }
+        author {
+          id
+          sub
+          email
+          metaData
+        }
       }
     }
   }
