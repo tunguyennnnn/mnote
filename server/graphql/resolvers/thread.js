@@ -42,6 +42,36 @@ export default {
         console.log(e)
         throw e
       }
+    },
+    userThreads: async (parent, { userId, cursor, limit }, { models, user }) => {
+      try {
+        const options = {
+          where: { userId },
+          limit,
+          order: [['updatedAt', 'DESC']]
+        }
+        if (cursor) {
+          options.where.createdAt = {
+            $lt: cursor
+          }
+        }
+        const threads = await models.Thread.findAll(options)
+        return {
+          pageInfo: {
+            hasNextPage: true,
+            hasPreviousPage: !!cursor
+          },
+          edges: threads.map(thread => {
+            return {
+              cursor: thread.updatedAt,
+              node: thread
+            }
+          })
+        }
+      } catch (e) {
+        console.log(e)
+        throw e
+      }
     }
   },
   Mutation: {

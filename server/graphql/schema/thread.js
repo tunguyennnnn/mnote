@@ -24,6 +24,7 @@ export default `
 
   type Query {
     threads (cursor: String, limit: Int = 20): ThreadConnection!
+    userThreads (userId: ID!, cursor: String, limit: Int = 20): ThreadConnection!
   }
 
   type Mutation {
