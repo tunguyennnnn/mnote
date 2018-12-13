@@ -64,11 +64,11 @@ export default class ParagraphWrapper extends React.Component {
   }
 
   render () {
-    const { children } = this.props
+    const { children, attributes } = this.props
     const { isFocused } = this.props
     return (
-      <div class={`editor-paragraph-wrapper ${isFocused && 'focus'}`}>
-        <div onClick={() => this.setState({ openMenu: false })}>
+      <div class={`editor-paragraph-wrapper ${isFocused && 'focus'}`} {...attributes} >
+        <div onClick={() => this.setState({ openMenu: false })} {...attributes}>
           {children}
         </div>
         {this.renderMenuIcon()}

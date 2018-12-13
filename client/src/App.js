@@ -1,11 +1,13 @@
+import './app.scss'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import {
   HomePage,
   InstagramHelper,
-  MyNotesPage,
-  MediaUploader
+  NotesPage,
+  MediaUploader,
+  NoterPage
 } from './containers'
 
 import {
@@ -15,12 +17,14 @@ import {
 export default class App extends React.Component {
   render () {
     return (
-      <div>
+      <div class='app-container'>
         <Switch>
           <Route exact path='/media' component={MediaUploader} />
           <Route exact path='/instagram' component={InstagramHelper} />
           <Route exact path='/myprofile' component={HomePage} />
-          <AuthenticationRoute exact path='/' component={MyNotesPage} />
+          <AuthenticationRoute exact path='/noters/:id' component={NoterPage} />
+          <Route exact path='/noters' component={() => <div>list of noters</div>} />
+          <AuthenticationRoute exact path='/' component={NotesPage} />
         </Switch>
       </div>
     )

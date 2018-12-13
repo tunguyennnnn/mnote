@@ -1,14 +1,5 @@
-@media only screen and (max-width: 500px) {
-  .mynote-page-container {
-    padding: 10px;
-  }
-}
-
-
-@media only screen and (min-width: 500px) {
-  .mynote-page-container {
-    padding: 10px 15vw 10px 15vw;
-  }
+.mynote-page-container {
+  
 }
 
 .mynote-container {
@@ -18,4 +9,33 @@
 
 .mynote-menu-container {
   margin: 10px;
+}
+
+.note-header-container {
+  margin: 1vw;
+}
+
+.note-body-container {
+  display: flex;
+  flex-direction: row;
+
+  .note-menu-container {
+    width: 30px;
+    margin-right: 1vw;
+    .note-menu {
+      border: 1px solid grey;
+      border-radius: 5px;
+      text-align: center;
+      i {
+        padding: 0;
+        margin: 0
+      }
+    }
+  }
+  
+  .note-body {
+    flex: 1 auto;
+    border-left: 2px solid #85144b;
+    padding: 1vw;
+  }
 }

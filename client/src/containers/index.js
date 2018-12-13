@@ -1,4 +1,5 @@
 export HomePage from './HomePage'
 export InstagramHelper from './InstagramHelper'
-export MyNotesPage from './MyNotesPage'
+export NotesPage from './NotesPage'
 export MediaUploader from './MediaUploader'
+export NoterPage from './NoterPage'

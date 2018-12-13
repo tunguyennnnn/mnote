@@ -17,11 +17,11 @@ class MyNotesPage extends React.Component {
         update: (proxy, { data: { deleteNote } }) => {
           try {
             if (!deleteNote) return
-            const data = proxy.readQuery({ query: myNotesQuery })
+            const data = proxy.readQuery({ query: notesQuery })
             console.log(data)
             data.threads.edges = data.threads.edges.filter(({ node }) => node.id !== id)
             console.log(data)
-            proxy.writeQuery({ query: myNotesQuery, data })
+            proxy.writeQuery({ query: notesQuery, data })
           } catch (e) {
             console.log(e)
           }
@@ -38,12 +38,12 @@ class MyNotesPage extends React.Component {
       const response = await createNote({
         variables: {},
         update: (proxy, { data: { newNote } }) => {
-          const data = proxy.readQuery({ query: myNotesQuery, variables: {} })
+          const data = proxy.readQuery({ query: notesQuery, variables: {} })
           data.threads.edges = [
             { cursor: newNote.updatedAt, node: newNote, __typename: "ThreadConnectionEdge" },
             ...data.threads.edges
           ]
-          proxy.writeQuery({ query: myNotesQuery, data })
+          proxy.writeQuery({ query: notesQuery, data })
         }
       })
     } catch (e) {
@@ -65,6 +65,7 @@ class MyNotesPage extends React.Component {
           {
             edges.map(({ node }) =>
               <MyNote key={`thread-${node.id}`}
+                viewOnly
                 node={node}
                 deleteNote={() => this.deleteNote(node.id)}
               />
@@ -76,7 +77,7 @@ class MyNotesPage extends React.Component {
   }
 }
 
-const myNotesQuery = gql`
+const notesQuery = gql`
   query threads($cursor: String, $limit: Int) {
     threads(cursor: $cursor, limit: $limit) {
       pageInfo {
@@ -134,7 +135,7 @@ const deleteNoteMutation = gql`
 `
 
 export default compose(
-  graphql(myNotesQuery, {
+  graphql(notesQuery, {
     options (props) {
       return {
         variables: {}

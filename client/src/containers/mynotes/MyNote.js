@@ -4,8 +4,7 @@ import { Card } from 'semantic-ui-react'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
-import MyNoteHeader from './MyNoteHeader'
-import NoteAuthor from './NoteAuthor'
+import NoteWrapper from './NoteWrapper'
 import { ThreadEditor } from '../../components'
 
 class MyNote extends React.Component {
@@ -14,30 +13,33 @@ class MyNote extends React.Component {
   }
 
   state = {
-    view: true
+    editReadOnly: true
   }
 
-  updateView = (view) => {
-    this.setState({ view })
+  updateEditReadOnly = (editReadOnly) => {
+    const { viewOnly } = this.props
+    !viewOnly && this.setState({ editReadOnly })
   }
 
   render () {
-    const { node, updateNote, deleteNote } = this.props
-    const { id, detail, author, authorInfo } = node
-    const { view } = this.state
+    const { node, updateNote, deleteNote, viewOnly } = this.props
+    const { id, detail, authorInfo } = node
+    const { editReadOnly } = this.state
     return (
       <Card className='mynote-container' centered fluid>
         <Card.Content>
-          <MyNoteHeader authorInfo={authorInfo}
-            isView={view}
-            updateView={this.updateView}
-            deleteNote={deleteNote}
-          />
-          <ThreadEditor id={id}
-            content={detail}
-            update={updateNote}
-            readOnly={view}
-          />
+          <NoteWrapper noteId={id} 
+            authorInfo={authorInfo}
+            viewOnly={viewOnly}
+            editReadOnly={editReadOnly}
+            updateEditReadOnly={this.updateEditReadOnly}
+          >
+            <ThreadEditor id={id}
+              content={detail}
+              update={updateNote}
+              readOnly={viewOnly || editReadOnly}
+            />
+          </NoteWrapper>
         </Card.Content>
       </Card>
     )
