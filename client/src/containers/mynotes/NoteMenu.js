@@ -12,7 +12,6 @@ class EditIcon extends React.Component {
   }
 }
 
-
 class LikeIcon extends React.Component {
   render () {
     const { liked, likeNote } = this.props
@@ -34,10 +33,15 @@ export default class NoteMenu extends React.Component {
   }
 
   renderAuthorizedToEditIcons () {
+    const { noteId, deleteNote } = this.props
     const { editReadOnly, updateEditReadOnly } = this.props
     return (
       <React.Fragment>
         <EditIcon view={editReadOnly} update={updateEditReadOnly} />
+        ___
+        <div>
+          <Icon link name='trash' onClick={() => deleteNote(noteId)} />
+        </div>
       </React.Fragment>
     )
   }

@@ -6,6 +6,53 @@ import { Card } from 'semantic-ui-react'
 import { MyNote, NoteMenu } from './mynotes'
 
 class NoterPage extends React.Component {
+  deleteNote = async (id) => {
+    const { id: userId } = this.props.match.params
+    try {
+      const c = window.confirm('Are you sure to delete the note?')
+      if (!c) return
+      const { deleteNote } = this.props
+      const response = await deleteNote({
+        variables: { id },
+        update: (proxy, { data: { deleteNote } }) => {
+          try {
+            if (!deleteNote) return
+            const data = proxy.readQuery({ query: myNotesQuery, variables: { userId } })
+            console.log(data.userThreads)
+            data.userThreads.edges = data.userThreads.edges.filter(({ node }) => node.id !== id)
+            console.log(data.userThreads)
+            proxy.writeQuery({ query: myNotesQuery, data, variables: { userId } })
+          } catch (e) {
+            console.log(e)
+          }
+        }
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  createNote = async () => {
+    const { id: userId } = this.props.match.params
+    try {
+      const { createNote } = this.props
+      const response = await createNote({
+        variables: {},
+        update: (proxy, { data: { newNote } }) => { 
+          const data = proxy.readQuery({ query: myNotesQuery, variables: { userId } })
+  
+          data.userThreads.edges = [
+            { cursor: newNote.updatedAt, node: newNote, __typename: "ThreadConnectionEdge" },
+            ...data.userThreads.edges
+          ]
+          proxy.writeQuery({ query: myNotesQuery, data, variables: { userId } })
+        }
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   render () {
     const { data } = this.props
     if (data.loading) return <div>loading...</div>
@@ -13,11 +60,13 @@ class NoterPage extends React.Component {
     const { edges } = userThreads
     return (
       <div class='noter-page-container'>
+        <NoteMenu createNote={this.createNote} />
         <Card.Group>
           {
             edges.map(({ node }) =>
               <MyNote key={`thread-${node.id}`}
                 node={node}
+                deleteNote={this.deleteNote}
               />
             )
           }
@@ -56,6 +105,34 @@ const myNotesQuery = gql`
   }
 `
 
+const createNoteMutation = gql`
+  mutation createThread {
+    newNote: createThread {
+      id
+      detail
+      updatedAt
+      authorInfo {
+        authorizationInfo {
+          canView
+          canEdit
+        }
+        author {
+          id
+          sub
+          email
+          metaData
+        }
+      }
+    }
+  }
+`
+
+const deleteNoteMutation = gql`
+  mutation deleteThread ($id: ID!) {
+    deleteNote: deleteThread (id: $id)
+  }
+`
+
 export default compose(
   graphql(myNotesQuery, {
     options (props) {
@@ -66,5 +143,7 @@ export default compose(
         }
       }
     }
-  })
+  }),
+  graphql(createNoteMutation, { name: 'createNote' }),
+  graphql(deleteNoteMutation, { name: 'deleteNote' })
 )(NoterPage)

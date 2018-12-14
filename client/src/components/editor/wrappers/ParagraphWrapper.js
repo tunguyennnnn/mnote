@@ -56,7 +56,10 @@ export default class ParagraphWrapper extends React.Component {
     if (!isFocused) return null
     return (
       <div contentEditable={false} class='menu-icon-container'
-        onMouseDown={() => this.setState({ openMenu: !openMenu })}
+        onClick={(event) => {
+          event.preventDefault()
+          this.setState({ openMenu: !openMenu })
+        }}
       >
         <Icon link name='plus' contentEditable={false} />
       </div>

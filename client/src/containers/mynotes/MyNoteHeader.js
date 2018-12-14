@@ -1,5 +1,4 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
 
 import NoteAuthor from './NoteAuthor'
 

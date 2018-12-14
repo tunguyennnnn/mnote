@@ -29,7 +29,7 @@ module.exports = {
     contentBase: commonPaths.publicPath,
     historyApiFallback: true,
     proxy: {
-      '/graphql': 'http://localhost:4000'
+      '/graphql': 'http://192.168.0.168:4000'
     },
     stats: {
       colors: true,

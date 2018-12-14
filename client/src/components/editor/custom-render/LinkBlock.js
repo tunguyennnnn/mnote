@@ -5,7 +5,7 @@ export default class LinkBlock extends React.Component {
     const { attributes, children, isFocused } = this.props
     return (
       <div {...attributes} class='editor-link-block'>
-        {children}
+        <p {...attributes}>{children}</p>
       </div>
     )
   }

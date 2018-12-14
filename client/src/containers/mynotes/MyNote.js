@@ -28,7 +28,9 @@ class MyNote extends React.Component {
     return (
       <Card className='mynote-container' centered fluid>
         <Card.Content>
-          <NoteWrapper noteId={id} 
+          <NoteWrapper 
+            noteId={id} 
+            deleteNote={deleteNote}
             authorInfo={authorInfo}
             viewOnly={viewOnly}
             editReadOnly={editReadOnly}

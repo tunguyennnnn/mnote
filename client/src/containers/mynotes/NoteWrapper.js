@@ -4,7 +4,7 @@ import NoteMenu from './NoteMenu'
 
 export default class NoteWrapper extends React.Component {
   render () {
-    const { children, authorInfo, nodeId, viewOnly, updateEditReadOnly, editReadOnly } = this.props
+    const { children, authorInfo, noteId, viewOnly, updateEditReadOnly, deleteNote, editReadOnly } = this.props
     return (
       <div class='note-container'>
         <div class='note-header-container'>
@@ -17,7 +17,12 @@ export default class NoteWrapper extends React.Component {
         </div>
         <div class='note-body-container'>
           <div class='note-menu-container'>
-            <NoteMenu viewOnly={viewOnly} editReadOnly={editReadOnly} updateEditReadOnly={updateEditReadOnly} />
+            <NoteMenu viewOnly={viewOnly} 
+              noteId={noteId}
+              editReadOnly={editReadOnly} 
+              updateEditReadOnly={updateEditReadOnly} 
+              deleteNote={deleteNote}
+            />
           </div>
           <div class='note-body'>
             { children }
