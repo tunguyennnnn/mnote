@@ -58,4 +58,11 @@ services:
     environment:
       GO_WORK_DIR: "${GO_PROJECT_DIR}/app"
     restart: on-failure
+  web-previewer:
+    networks:
+      - webnetwork
+    image: website-preview:latest
+    ports:
+      - "44371:44371"
+    restart: on-failure
         
