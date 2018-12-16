@@ -101,7 +101,8 @@ class InstagramScraper:
             for node in metrics:
                 node = node.get('node')
                 if node and isinstance(node, dict):
-                    title = node['edge_media_to_caption']['edges'][0]['node']['text']
+                    
+                    title = len (node['edge_media_to_caption']['edges']) > 0 and node['edge_media_to_caption']['edges'][0]['node']['text'] or ''
                     number_of_comments = node['edge_media_to_comment']['count']
                     image = node['display_url']
                     number_of_likes = node['edge_liked_by']['count']
