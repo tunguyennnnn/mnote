@@ -6,6 +6,7 @@
   "author": "tunguyennnnn <conghoa522@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build:devserver": "docker build -t stream-server:0.0.1 ."
+    "build:devserver": "docker build -t stream-server:0.0.1 .",
+    "start:production": "docker-compose -f docker-compose.prod.yml up"
   }
 }
