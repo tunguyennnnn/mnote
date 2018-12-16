@@ -8,10 +8,13 @@ export default class LinkBlock extends React.Component {
   render () {
     const { attributes, children, isFocused, node } = this.props
     return (
-      <div {...attributes} class='editor-link-block'>
-        <p {...attributes}>{children}</p>
+      <div {...attributes} class='editor-link-block-container'>
+        <p {...attributes} class='editor-link-block' >{children}</p>
         {
-          !isFocused && isUrl(node.text) && <SitePreviewer url={node.text} />
+          !isFocused && isUrl(node.text) && 
+          <div contentEditable={false} class='editor-link-preview'>
+            <SitePreviewer url={node.text} />
+          </div>
         }
       </div>
     )

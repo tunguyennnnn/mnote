@@ -2,7 +2,6 @@ export default {
   Thread: {
     authorInfo: async (thread, args, { models, user }) => {
       const author = await thread.getAuthor()
-      console.log(author)
       return {
         authorizationInfo: {
           canView: true, //TODO: later with protected notes, this may be false

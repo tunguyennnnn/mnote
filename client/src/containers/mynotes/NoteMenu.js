@@ -1,26 +1,21 @@
+import './note-menu.scss'
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
 
-class EditIcon extends React.Component {
-  render () {
-    const { view, update } = this.props
-    return (
-      <div>
-        <Icon name={view ? 'edit' : 'sticky note'} link onClick={() => update(!view)}/>
-      </div>
-    )
-  }
+function EditIcon ({ view, update }) {
+  return (
+    <div>
+      <Icon name={view ? 'edit' : 'sticky note'} link onClick={() => update(!view)}/>
+    </div>
+  )
 }
 
-class LikeIcon extends React.Component {
-  render () {
-    const { liked, likeNote } = this.props
-    return (
-      <div>
-        <Icon name='thumbs up outline' link />
-      </div>
-    )
-  }
+function LikeIcon ({ liked, likeNote }) {
+  return (
+    <div>
+      <Icon name='thumbs up outline' link />
+    </div>
+  )
 }
 
 export default class NoteMenu extends React.Component {
@@ -38,7 +33,6 @@ export default class NoteMenu extends React.Component {
     return (
       <React.Fragment>
         <EditIcon view={editReadOnly} update={updateEditReadOnly} />
-        ___
         <div>
           <Icon link name='trash' onClick={() => deleteNote(noteId)} />
         </div>

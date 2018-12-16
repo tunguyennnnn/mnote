@@ -30,7 +30,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/api/Preview': 'http://localhost:44371',
-      '/graphql': 'http://192.168.0.168:4000'
+      '/graphql': 'http://localhost:4000'
     },
     stats: {
       colors: true,

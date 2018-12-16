@@ -1,6 +1,7 @@
+import './site-preview.scss'
 import React from 'react'
-import isUrl from 'is-url'
 import axios from 'axios'
+import { Comment } from 'semantic-ui-react'
 
 export default class SitePreviewer extends React.Component {
    state = {
@@ -8,10 +9,11 @@ export default class SitePreviewer extends React.Component {
   }
 
   fetchPreview = async () => {
+    const { url } = this.props
     try {
       const response = await axios.get('/api/Preview', {
         params: {
-          url: 'https://www.instagram.com/explore/locations/578043681/'
+          url
         }
       })
       const { data } = response
@@ -34,14 +36,15 @@ export default class SitePreviewer extends React.Component {
     console.log(image, title, type)
     return (
       <div class='preview-url-container'>
-        <div>
-          {image}
-        </div>
-        <div>
-          {title}
-          -
-          {type}
-        </div>
+        <Comment.Group>
+          <Comment>
+            <Comment.Avatar src={image} />
+            <Comment.Content>
+              <Comment.Author as='label'>{type}</Comment.Author>
+              <Comment.Text>{title}</Comment.Text>
+            </Comment.Content>
+          </Comment>
+        </Comment.Group>
       </div>
     )
   }

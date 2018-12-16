@@ -16,10 +16,22 @@
    border-radius: 5px;
 }
 
-.editor-link-block {
-  background: #3578e5;
-  border: 1px solid #3578e5;
-  color: white;
-  border-radius: 5px;
-  padding: 8px;
+.editor-link-block-container {
+  .editor-link-block {
+    background: #3578e5;
+    border: 1px solid #3578e5;
+    color: white;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 1px !important;
+  }
+  .editor-link-preview {
+    border: 0.5px solid grey;
+    border-radius: 5px;
+    padding: 8px;
+
+    .preview-url-container {
+      max-width: 350px;
+    }
+  }
 }
