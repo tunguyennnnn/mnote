@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production babel-node index.js",
     "start:dev": "nodemon index.js --exec babel-node",
-    "docker:build": "docker build -t tunguyenuni/mysite-server:latest ."
+    "docker:build": "docker build -t tunguyenuni/mysite-server:latest .",
+    "update-author-threads": "babel-node scripts/add-non-author-threads-to-admin.js"
   },
   "dependencies": {
     "apollo-server-express": "^2.1.0",
