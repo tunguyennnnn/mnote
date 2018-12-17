@@ -5,7 +5,10 @@ module.exports = {
     return queryInterface.addColumn(
       'Threads',
       'userId',
-      Sequelize.INTEGER
+      Sequelize.INTEGER,
+      {
+        defaultValue: 1
+      }
     )
   },
 
