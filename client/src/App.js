@@ -11,6 +11,7 @@ import {
 } from './containers'
 
 import {
+  Header,
   AuthenticationRoute
 } from './components'
 
@@ -18,6 +19,7 @@ export default class App extends React.Component {
   render () {
     return (
       <div class='app-container'>
+        <Header />
         <Switch>
           <Route exact path='/media' component={MediaUploader} />
           <Route exact path='/instagram' component={InstagramHelper} />
