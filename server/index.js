@@ -5,6 +5,8 @@ import bodyParser from 'body-parser'
 import compress from 'compression'
 import cors from 'cors'
 import path from 'path'
+
+import restRoute from './rests'
 import models from './models'
 import schema from './graphql'
 import { authCheck } from './services/authentication'
@@ -41,6 +43,7 @@ app.use(
   })
 )
 
+app.use('/api', restRoute)
 app.use(authCheck)
 
 app.use(

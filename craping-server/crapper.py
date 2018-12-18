@@ -65,7 +65,7 @@ class InstagramScraper:
         try:
             response = self.__request_url(profile_url)
             json_data = self.extract_json_data(response)
-            number_of_followers = json_data['entry_data']['LocationsPage'][0]['graphql']['location']['edge_followed_by']['count']
+            # number_of_followers = json_data['entry_data']['LocationsPage'][0]['graphql']['location']['edge_followed_by']['count']
             metrics = json_data['entry_data']['LocationsPage'][0]['graphql']['location']['edge_location_to_media']["edges"]
         except Exception as e:
             raise e
@@ -79,7 +79,6 @@ class InstagramScraper:
                     number_of_likes = node['edge_liked_by']['count']
                     shortcode = node['shortcode']
                     res = {}
-                    res['number_of_followers'] = number_of_followers
                     res['comments'] = self.extract_link_and_comments(post_link_prefix + shortcode)
                     res['title'] = title
                     res['number_of_comments'] = number_of_comments
