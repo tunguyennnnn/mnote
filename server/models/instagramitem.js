@@ -21,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
             results.map(r => {
               const {comments, number_of_likes, number_of_comments, image, number_of_followers, title} = r
               return {
+                instagramItemId: item.id,
                 comments,
                 numberOfLikes: number_of_likes,
                 numberOfComments: number_of_comments,
-                title,
+                title: title.substring(0, 244),
                 image,
-                instagramItemId: item.id,
                 numberOfFollowers: number_of_followers
               }
             })
