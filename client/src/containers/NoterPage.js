@@ -18,9 +18,9 @@ class NoterPage extends React.Component {
           try {
             if (!deleteNote) return
             const data = proxy.readQuery({ query: myNotesQuery, variables: { userId } })
-            console.log(data.userThreads)
+  
             data.userThreads.edges = data.userThreads.edges.filter(({ node }) => node.id !== id)
-            console.log(data.userThreads)
+          
             proxy.writeQuery({ query: myNotesQuery, data, variables: { userId } })
           } catch (e) {
             console.log(e)
@@ -136,7 +136,6 @@ const deleteNoteMutation = gql`
 export default compose(
   graphql(myNotesQuery, {
     options (props) {
-      console.log(props)
       return {
         variables: {
           userId: props.match.params.id

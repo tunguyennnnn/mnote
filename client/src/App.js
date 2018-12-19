@@ -26,7 +26,7 @@ export default class App extends React.Component {
           <Route exact path='/myprofile' component={HomePage} />
           <Route exact path='/noters/:id' component={NoterPage} />
           <Route exact path='/noters' component={() => <div>list of noters</div>} />
-          <AuthenticationRoute exact path='/' component={NotesPage} />
+          <Route exact path='/' component={NotesPage} />
         </Switch>
       </div>
     )

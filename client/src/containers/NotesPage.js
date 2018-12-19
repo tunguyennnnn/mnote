@@ -12,9 +12,9 @@ class MyNotesPage extends React.Component {
     const { data } = this.props
     if (data.loading) return null
     const { threads } = data
-    // const { threads } = this.props
+  
     const { edges } = threads
-    console.log(edges)
+
     return (
       <div class='mynote-page-container'>
         <Card.Group>

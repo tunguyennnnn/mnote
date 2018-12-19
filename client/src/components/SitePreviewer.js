@@ -33,7 +33,6 @@ export default class SitePreviewer extends React.Component {
     const { fetchResult} = this.state
     if (!fetchResult) return <div>loading...</div>
     const { image, title, type } = fetchResult
-    console.log(image, title, type)
     return (
       <div class='preview-url-container'>
         <Comment.Group>
