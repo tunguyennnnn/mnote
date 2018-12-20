@@ -16,13 +16,29 @@ class Body extends React.Component {
     this.setState({ active: item })
   }
 
+  deleteInstagramItem = async ({ id }) => {
+    console.log(id)
+    try {
+      await this.props.deleteInstagramItem({
+        variables: { id },
+        update: (proxy, response) => {
+          const data = proxy.readQuery({ query: instagramItemsQuery, variables: {} })
+          data.instagramItems.edges = data.instagramItems.edges.filter(edge => edge.node.id !== id)
+          proxy.writeQuery({ query: instagramItemsQuery, data })
+          this.setState({ active: null })
+        }
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   createInstagramItem = async ({ name, url, description }) => {
     try {
-      console.log(name, url, description)
       this.setState({...this.state, loading: true})
       const response = await this.props.createInstagramItem({
         variables: { name, url, description },
-        update: (proxy, { data: { createInstagramItem }  }) => {
+        update: (proxy, { data: { createInstagramItem } }) => {
           const data = proxy.readQuery({ query: instagramItemsQuery, variables: {} })
           data.instagramItems.edges = [
             { cursor: createInstagramItem.createdAt, node: createInstagramItem, __typename: "InstagramItemEdge" },
@@ -31,9 +47,6 @@ class Body extends React.Component {
           proxy.writeQuery({ query: instagramItemsQuery, data })
         }
       })
-      console.log(response)
-      const { data: { createInstagramItem } } = response
-      console.log( createInstagramItem )
       this.setState({
         ...this.state,
         loading: false,
@@ -62,6 +75,7 @@ class Body extends React.Component {
           <Grid.Row>
             <Grid.Column width={6}>
               <SideList items={instagramItems.edges} setItem={this.setItem}
+                deleteInstagramItem={this.deleteInstagramItem}
                 createInstagramItem={this.createInstagramItem}
               />
             </Grid.Column>
@@ -106,6 +120,12 @@ const newInstagramItemMutation = gql`
   }
 `
 
+const destroyInstagramItemMutation = gql`
+  mutation deleteInstagramItem ($id: ID!) {
+    deleteInstagramItem (id: $id)
+  }
+`
+
 export default compose(
   graphql(instagramItemsQuery, {
     options (props) {
@@ -114,5 +134,6 @@ export default compose(
       }
     }
   }),
-  graphql(newInstagramItemMutation, { name: 'createInstagramItem' })
+  graphql(newInstagramItemMutation, { name: 'createInstagramItem' }),
+  graphql(destroyInstagramItemMutation, { name: 'deleteInstagramItem' })
 )(Body)

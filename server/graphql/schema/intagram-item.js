@@ -35,5 +35,6 @@ export default `
 
   type Mutation {
     createInstagramItem (url: String!, name: String = "No Title", description: String = "No Description"): InstagramItem
+    deleteInstagramItem (id: ID!): Boolean
   }
 `

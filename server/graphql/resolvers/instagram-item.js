@@ -42,8 +42,7 @@ export default {
       try {
         const options = {
           where: {},
-          order: [['createdAt', 'DESC']],
-          limit
+          order: [['createdAt', 'DESC']]
         }
         if (cursor) {
           options.createdAt.createdAt = { $lt: cursor}
@@ -74,6 +73,13 @@ export default {
           name,
           url
         })
+      } catch (e) {
+        throw e
+      }
+    },
+    deleteInstagramItem: async (root, { id }, { models, user }) => {
+      try {
+        return await models.InstagramItem.destroy({ where: { id } })
       } catch (e) {
         throw e
       }

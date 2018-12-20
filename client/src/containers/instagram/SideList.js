@@ -27,7 +27,7 @@ export default class SideList  extends React.Component {
 
 
   render () {
-    const { items, setItem } = this.props
+    const { items, setItem, deleteInstagramItem } = this.props
     console.log(items)
     return (
       <div>
@@ -42,7 +42,7 @@ export default class SideList  extends React.Component {
         >
           <NewItemForm submit={this.props.createInstagramItem} closeModal={this.closeModal} />
         </Modal>
-        <ItemList items={items} setItem={setItem} />
+        <ItemList items={items} setItem={setItem} deleteInstagramItem={deleteInstagramItem} />
       </div>
     )
   }

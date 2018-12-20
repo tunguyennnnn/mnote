@@ -40,7 +40,8 @@ module.exports = (sequelize, DataTypes) => {
   InstagramItem.associate = (models) => {
     InstagramItem.hasMany(models.InstagramInfo, {
       foreignKey: 'instagramItemId',
-      as: 'infos'
+      as: 'infos',
+      onDelete: 'CASCADE'
     })
   };
   return InstagramItem;
