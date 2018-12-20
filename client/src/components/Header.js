@@ -6,12 +6,15 @@ import { withRouter } from "react-router"
 import { Link } from 'react-router-dom'
 import MediaQuery from 'react-responsive'
 
+import authenticate from './authenticate'
 import { AuthService } from '../services'
 
 @withRouter
+@authenticate
 export default class Header extends React.Component {
   renderMyProfile () {
-    if (!AuthService.isAuthenticated()) return null
+    console.log(this.props.isLogin)
+    if (!this.props.isLoggedin) return null
     const { pathname } = this.props.location
 
     const { userId, picture } = AuthService.userProfile()
@@ -26,7 +29,7 @@ export default class Header extends React.Component {
   }
 
   renderActions () {
-    if (!AuthService.isAuthenticated()) {
+    if (!this.props.isLoggedin) {
       return (
         <Menu.Item onClick={() => AuthService.lock.show()}>Login</Menu.Item>
       )
