@@ -11,6 +11,7 @@ export default class InfoItem extends React.Component {
         <Image src={image} bordered avatar />
         <List.Content>
           <List.Content>
+          <List.Header>{title}</List.Header>
             <List.Header>{numberOfLikes} likes - {numberOfComments} comments</List.Header>
           </List.Content>
         </List.Content>

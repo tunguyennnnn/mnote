@@ -45,12 +45,12 @@ class Body extends React.Component {
             ...data.instagramItems.edges
           ]
           proxy.writeQuery({ query: instagramItemsQuery, data })
+          this.setState({
+            ...this.state,
+            loading: false,
+            active: createInstagramItem
+          })
         }
-      })
-      this.setState({
-        ...this.state,
-        loading: false,
-        active: createInstagramItem
       })
     } catch (e) {
       console.log(e)
