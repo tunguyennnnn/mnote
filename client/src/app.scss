@@ -1,4 +1,33 @@
+@font-face {
+  font-family: futura-bold;
+  src: url(./assets/fonts/FuturaPTBold.otf);
+}
+
+@font-face {
+  font-family: futura-bold-oblique;
+  src: url(./assets/fonts/FuturaPTBoldOblique.otf);
+}
+
+@font-face {
+  font-family: futura-book;
+  src: url(./assets/fonts/FuturaPTBook.otf);
+}
+
+@font-face {
+  font-family: futura-medium;
+  src: url(./assets/fonts/FuturaPTMedium.otf);
+}
+
+@font-face {
+  font-family: futura-light;
+  src: url(./assets/fonts/FuturaPTLight.otf);
+}
+
+
 @media only screen and (max-width: 500px) {
+  html {
+    font-size: 14px;
+  }
   .app-container {
     padding: 3vh;
   }
@@ -6,6 +35,10 @@
 
 
 @media only screen and (min-width: 500px) {
+  html {
+    font-size: 18px;
+  }
+
   .app-container {
     padding: 0 15vw 10px 15vw;
   }

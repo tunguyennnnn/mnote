@@ -10,10 +10,17 @@
   margin: 0!important;
 }
 
+.editor-header {
+  font-family: futura-bold;
+  font-size: 1.4rem;
+}
+
 .editor-code {
-   background: #eee;
+   background: #0d101e;
    padding: 10px;
    border-radius: 5px;
+   color: white;
+   font-size: 0.8rem;
 }
 
 .editor-link-block-container {

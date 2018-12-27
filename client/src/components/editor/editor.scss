@@ -9,6 +9,10 @@
   transition: opacity .75s;
 }
 
+.editor-container {
+  font-family: futura-light;
+}
+
 
 @media only screen and (min-width: 480px) {
   .editor-container {
@@ -17,7 +21,4 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .editor-container {
-    font-size: 1.5rem;
-  }
 }

@@ -20,7 +20,7 @@ import {
 } from './types'
 
 export default {
-  [TITLE]: (props) => <h3 {...props.attributes}>{props.children}</h3>,
+  [TITLE]: (props) => <p class='editor-header' {...props.attributes}>{props.children}</p>,
   [PARAGRAPH]: (props) =>
     <p {...props.attributes} class='editor-p'>{props.children}</p>,
   [ORDERED_LIST]: (props) => 

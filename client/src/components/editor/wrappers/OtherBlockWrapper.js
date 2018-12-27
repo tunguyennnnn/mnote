@@ -47,7 +47,9 @@ export default class OtherBlockWrapper extends React.Component {
     const { children, attributes } = this.props
     return (
       <div {...attributes} class='editor-other-block-wrapper'>
-        <div onClick={() => this.setState({ openMenu: false })}>
+        <div {...attributes}
+          onClick={() => this.setState({ openMenu: false })}
+        >
           {children}
         </div>
         {this.renderMenuIcon()}
