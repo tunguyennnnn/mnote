@@ -16,11 +16,29 @@
 }
 
 .editor-code {
-   background: #0d101e;
-   padding: 10px;
-   border-radius: 5px;
-   color: white;
-   font-size: 0.8rem;
+  background: #0d101e;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.inline-bold {
+  font-weight: bold;
+}
+
+.inline-italic {
+  font-style: oblique;
+}
+
+.inline-underline {
+  text-decoration: underline;
+}
+
+.inline-highlight {
+  color: white;
+  background: #ad3970;
+  padding: 1px 3px 1px 3px;
 }
 
 .editor-link-block-container {

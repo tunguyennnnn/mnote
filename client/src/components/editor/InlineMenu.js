@@ -11,6 +11,12 @@ export default class MarkMenu extends React.Component {
     this.showMenu()
   }
 
+  onIconClick = (type, event) => {
+    event.preventDefault()
+    const { editor, onChange } = this.props
+    onChange(editor.toggleMark(type))
+  }
+
   showMenu () {
     const { value } = this.props
     if (value.blocks.size > 1) return
@@ -39,15 +45,23 @@ export default class MarkMenu extends React.Component {
     menu.style.left = `${left}px`
   }
 
+  renderMenuIcon = (icon, type) => {
+    const { value } = this.props
+    const isActive = value.activeMarks.some(mark => mark.type === type)
+    return (
+      <Icon name={icon} onMouseDown={this.onIconClick.bind(this, type)} className={isActive && 'active'} />
+    )
+  }
+
   render () {
     return ReactDOM.createPortal(
       <div class='inline-menu-container'
         ref={(el) => this.menuRef = el}
       >
-        <Icon name='bold' />
-        <Icon name='italic' />
-        <Icon name='underline' />
-        <Icon name='pencil alternate' />
+        {this.renderMenuIcon('bold', BOLD)}
+        {this.renderMenuIcon('italic', ITALIC)}
+        {this.renderMenuIcon('underline', UNDERLINE)}
+        {this.renderMenuIcon('pencil alternate', HIGHLIGHT)}
       </div>
     , document.getElementsByTagName('body')[0])
   }

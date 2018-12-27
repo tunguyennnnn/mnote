@@ -58,9 +58,9 @@ export default class extends React.Component {
   }
 
   renderMark = (props, editor, next) => {
-    const { node } = props
-    if (!inlineRender[node.type]) return next()
-    return inlineRender[node.type].call(null, props)
+    const { mark, attributes, children } = props
+    if (!inlineRender[mark.type]) return next()
+    return inlineRender[mark.type].call(null, props)
   }
 
   renderEditor = (props, editor, next) => {

@@ -7,12 +7,18 @@
   display: none;
   background: white;
   transition: opacity .75s;
+
+  i {
+    color: grey;
+  }
+  i.active {
+    color: black;
+  }
 }
 
 .editor-container {
   font-family: futura-light;
 }
-
 
 @media only screen and (min-width: 480px) {
   .editor-container {
