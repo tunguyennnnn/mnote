@@ -12,6 +12,13 @@ export default {
     }
   },
   Query: {
+    thread: async (parent, { id }, { models, user }) => {
+      try {
+        return models.Thread.findOne({ where: { id }})
+      } catch (e) {
+        throw e
+      }
+    },
     threads: async (parent, { cursor, limit }, { models }) => {
       try {
         const options = {

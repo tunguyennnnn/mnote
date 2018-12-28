@@ -23,6 +23,7 @@ export default `
   }
 
   type Query {
+    thread (id: ID!): Thread
     threads (cursor: String, limit: Int = 20): ThreadConnection!
     userThreads (userId: ID!, cursor: String, limit: Int = 20): ThreadConnection!
   }

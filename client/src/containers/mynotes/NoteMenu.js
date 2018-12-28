@@ -1,11 +1,15 @@
 import './note-menu.scss'
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
-function EditIcon ({ view, update }) {
+function EditIcon ({ noteId }) {
   return (
     <div>
-      <Icon name={view ? 'edit' : 'sticky note'} link onClick={() => update(!view)}/>
+      <Link to={`/notes/${noteId}`}
+      >
+        <Icon name='edit' link />
+      </Link>
     </div>
   )
 }
@@ -32,7 +36,7 @@ export default class NoteMenu extends React.Component {
     const { editReadOnly, updateEditReadOnly } = this.props
     return (
       <React.Fragment>
-        <EditIcon view={editReadOnly} update={updateEditReadOnly} />
+        <EditIcon view={editReadOnly} update={updateEditReadOnly} noteId={noteId} />
         <div>
           <Icon link name='trash' onClick={() => deleteNote(noteId)} />
         </div>

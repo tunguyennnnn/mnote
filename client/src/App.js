@@ -7,7 +7,8 @@ import {
   InstagramHelper,
   NotesPage,
   MediaUploader,
-  NoterPage
+  NoterPage,
+  NoteWritingPage
 } from './containers'
 
 import {
@@ -24,6 +25,7 @@ export default class App extends React.Component {
           <Route exact path='/media' component={MediaUploader} />
           <Route exact path='/instagram' component={InstagramHelper} />
           <Route exact path='/myprofile' component={HomePage} />
+          <Route exact path='/notes/:id' component={NoteWritingPage} />
           <Route exact path='/noters/:id' component={NoterPage} />
           <Route exact path='/noters' component={() => <div>list of noters</div>} />
           <Route exact path='/' component={NotesPage} />
