@@ -3,7 +3,8 @@ import React from 'react'
 
 import Math from './custom-render/Math'
 import LinkBlock from './custom-render/LinkBlock'
-
+import Paragraph from './custom-render/Paragraph'
+import CodeLine from './custom-render/CodeLine'
 import {
   PARAGRAPH,
   CODE,
@@ -21,8 +22,7 @@ import {
 
 export default {
   [TITLE]: (props) => <p class='editor-header' {...props.attributes}>{props.children}</p>,
-  [PARAGRAPH]: (props) =>
-    <p {...props.attributes} class='editor-p'>{props.children}</p>,
+  [PARAGRAPH]: (props) => <Paragraph {...props} />,
   [ORDERED_LIST]: (props) => 
     <ol {...props.attributes} class='editor-ol'>{props.children}</ol>,
   [UNORDERED_LIST]: (props) => 
@@ -45,6 +45,5 @@ export default {
       </pre>
     )
   },
-  [CODE_LINE]: (props) =>
-      <div class='editor-code-line' {...props.attributes}>{props.children}</div>
+  [CODE_LINE]: (props) => <CodeLine {...props} />
 }

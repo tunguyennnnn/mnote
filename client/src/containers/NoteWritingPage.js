@@ -1,17 +1,22 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
+import { ThreadEditor } from '../components'
 
 class NoteWritingPage extends React.Component {
   render () {
-    const { data } = this.props
+    const { data, updateNote } = this.props
     if (data.loading) return <div>loading...</div>
     const { note } = data
-    console.log(data)
-    console.log(note)
+    if (!note) return null
+    const { id, detail } = note
     return (
       <div>
-        
+        <ThreadEditor 
+          id={id}
+          content={detail}
+          update={updateNote}
+        />
       </div>
     )
   }
@@ -39,6 +44,15 @@ const queryNote = gql`
   }
 `
 
+const updateNoteMutation = gql`
+  mutation updateThread($id: ID!, $detail: JSON!) {
+    updateThread(id: $id, detail: $detail) {
+      id
+      detail
+    }
+  }
+`
+
 export default compose(
   graphql(queryNote, {
     options (props) {
@@ -49,5 +63,6 @@ export default compose(
         }
       }
     }
-  })
+  }),
+  graphql(updateNoteMutation, { name: 'updateNote' })
 )(NoteWritingPage)
