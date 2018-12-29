@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icon } from 'semantic-ui-react'
 
+import { insertInParagraphBlock } from '../helpers/insert'
 import Menu from './Menu'
 import {
   PARAGRAPH

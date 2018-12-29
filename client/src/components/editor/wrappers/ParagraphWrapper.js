@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon } from 'semantic-ui-react'
 import _ from 'lodash'
 
-import { insertInParagraphBlock, insertParagraph } from '../helpers/insert'
+import { insertInParagraphBlock } from '../helpers/insert'
 import Menu from './Menu'
 
 import {

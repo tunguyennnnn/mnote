@@ -49,7 +49,7 @@ export default class MarkMenu extends React.Component {
     const { value } = this.props
     const isActive = value.activeMarks.some(mark => mark.type === type)
     return (
-      <Icon name={icon} onMouseDown={this.onIconClick.bind(this, type)} className={isActive && 'active'} />
+      <Icon name={icon} onMouseDown={this.onIconClick.bind(this, type)} className={isActive && 'active' || ''} />
     )
   }
 

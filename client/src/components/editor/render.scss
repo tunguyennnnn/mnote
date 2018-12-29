@@ -1,9 +1,17 @@
 .editor-math-container {
+  background: #fcfcfc;
+  border: solid 1px #eee;
   padding: 15px;
   text-align: center;
-  border: solid grey;
-  border-width: 1px 3px 1px 3px;
-  border-radius: 5px;
+
+  .editor-math-preview {
+    position: relative;
+
+    .formula {
+      position: absolute;
+      width: 100%;
+    }
+  }
 }
 
 .editor-p {
@@ -47,9 +55,9 @@
 
 .editor-link-block-container {
   .editor-link-block {
-    background: #3578e5;
-    border: 1px solid #3578e5;
-    color: white;
+    background: #3D9970;
+    font-family: futura-medium;
+    color: #141c41;
     border-radius: 5px;
     padding: 8px;
     margin-bottom: 1px !important;

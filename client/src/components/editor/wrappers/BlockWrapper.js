@@ -11,11 +11,12 @@ import {
   ORDERED_LIST,
   UNORDERED_LIST,
   MATH,
-  CODE
+  CODE,
+  LINK_BLOCK
 } from '../types'
 
 const PrimaryTypes = [
-  TABLE, ORDERED_LIST, UNORDERED_LIST, MATH, CODE
+  TABLE, ORDERED_LIST, UNORDERED_LIST, MATH, CODE, LINK_BLOCK
 ]
 
 export default class BlockWrapper extends React.Component {

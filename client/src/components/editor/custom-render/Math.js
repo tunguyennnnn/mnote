@@ -10,9 +10,8 @@ export default class Math extends React.Component {
       if (math) math = ReactHtmlParser(katex.renderToString(math))
     } catch (e) {
     }
-    const style = {position: 'absolute', width: '100%'}
     return (
-      <div style={style} contentEditable={false}>{math}</div>
+      <div class='formula' contentEditable={false}>{math}</div>
     )
   }
   render () {
@@ -20,7 +19,9 @@ export default class Math extends React.Component {
     const writeStyle = !isSelected ? {display: 'inline-block', width: '0', whiteSpace: 'nowrap', opacity: '0'} : {}
     return (
       <div {...attributes} class='editor-math-container'>
-        {!isSelected && this.renderMath()}
+        <div class='editor-math-preview'>  
+          {!isSelected && this.renderMath()}
+        </div>
         <div style={writeStyle}>{children}</div>
       </div>
     )
