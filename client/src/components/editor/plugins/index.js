@@ -1,6 +1,8 @@
 import AutoReplace from 'slate-auto-replace'
 
 import onBackspaceInCodeline from './on-backspace-in-code-line'
+import hotkeyPlugins from './hotkey-plugins'
+import inlineTextPlugins from './inline-text-plugins'
 
 const onTabReplace = AutoReplace({
   trigger: 'tab',
@@ -12,5 +14,7 @@ const onTabReplace = AutoReplace({
 
 export default [
   onTabReplace,
-  onBackspaceInCodeline
+  onBackspaceInCodeline,
+  ...hotkeyPlugins,
+  ...inlineTextPlugins
 ]

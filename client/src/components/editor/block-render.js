@@ -5,6 +5,8 @@ import Math from './custom-render/Math'
 import LinkBlock from './custom-render/LinkBlock'
 import Paragraph from './custom-render/Paragraph'
 import CodeLine from './custom-render/CodeLine'
+import InlineKeyword from './custom-render/InlineKeyword'
+import InlineMath from './custom-render/InlineMath'
 
 import {
   PARAGRAPH,
@@ -15,7 +17,9 @@ import {
   ORDERED_LIST,
   UNORDERED_LIST,
   LIST_ITEM,
-  LINK_BLOCK
+  LINK_BLOCK,
+  INLINE_KEYWORD,
+  INLINE_MATH
 } from './types'
 
 export default {
@@ -37,5 +41,7 @@ export default {
       </pre>
     )
   },
-  [CODE_LINE]: (props) => <CodeLine {...props} />
+  [CODE_LINE]: (props) => <CodeLine {...props} />,
+  [INLINE_KEYWORD]: (props) => <InlineKeyword {...props} />,
+  [INLINE_MATH]: (props) => <InlineMath {...props} />
 }

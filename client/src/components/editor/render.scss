@@ -72,3 +72,25 @@
     }
   }
 }
+
+// inlines 
+
+.inline-wrapper {
+  position: relative; 
+}
+
+.inline-wrapper.selected {
+  border: 0.5px solid #DAA520;
+}
+
+.editor-inline-keyword {
+  color: #fd5750;
+  font-size: 85%;
+  font-family: futura-medium;
+}
+
+.editor-inline-math {
+  color: #373943;
+  font-size: 85%;
+  font-family: futura-medium;
+}

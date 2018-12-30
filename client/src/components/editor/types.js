@@ -5,6 +5,8 @@ export const UNDERLINE = 'underline'
 export const INLINE_CODE = 'inline_code'
 export const INLINE_MATH = 'inline_math'
 export const INLINE_LINK = 'inline_link'
+export const INLINE_KEYWORD = 'inline_keyword'
+export const INLINE_QUOTE = 'inline_quote'
 
 export const TITLE = 'title'
 export const MATH = 'math'
