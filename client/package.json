@@ -43,8 +43,11 @@
     "rxjs-compat": "^6.3.3",
     "semantic-ui-react": "^0.83.0",
     "slate": "^0.44.9",
+    "slate-auto-replace": "^0.12.1",
     "slate-deep-table": "^0.8.0",
-    "slate-react": "^0.21.15"
+    "slate-edit-code": "^0.15.5",
+    "slate-react": "^0.21.15",
+    "slate-schema-violations": "^0.1.39"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

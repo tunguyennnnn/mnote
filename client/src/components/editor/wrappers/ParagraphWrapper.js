@@ -7,7 +7,6 @@ import Menu from './Menu'
 
 import {
   PARAGRAPH,
-  TABLE,
   ORDERED_LIST,
   UNORDERED_LIST,
   MATH,
@@ -19,7 +18,6 @@ const EmpyParagraphActionList = [
   { type: PARAGRAPH, icon: 'paragraph' },
   { type: MATH, icon: 'superscript' },
   { type: CODE, icon: 'keyboard' },
-  { type: TABLE, icon: 'th' },
   { type: ORDERED_LIST, icon: 'list ol' },
   { type: UNORDERED_LIST, icon: 'list alternate' },
   { type: LINK_BLOCK, icon: 'linkify' },

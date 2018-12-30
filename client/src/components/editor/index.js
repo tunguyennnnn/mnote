@@ -1,10 +1,10 @@
 import './editor.scss'
 import React from 'react'
 import { Editor } from 'slate-react'
-import Plain from 'slate-plain-serializer'
 import { Value } from 'slate'
 import { Subject } from 'rxjs/Subject'
 
+import plugins from './plugins'
 import InlineMenu from './InlineMenu'
 import BlockWrapper from './wrappers/BlockWrapper'
 import { debounceTime } from 'rxjs/operators'
@@ -88,6 +88,7 @@ export default class extends React.Component {
           renderEditor={this.renderEditor}
           placeholder='Some fact...'
           readOnly={readOnly}
+          plugins={plugins}
           schema={schema}
           onChange={this.onChange}
           renderNode={this.renderNode}

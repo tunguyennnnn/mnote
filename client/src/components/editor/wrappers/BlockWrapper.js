@@ -7,7 +7,6 @@ import OtherBlockWrapper from './OtherBlockWrapper'
 
 import {
   PARAGRAPH,
-  TABLE,
   ORDERED_LIST,
   UNORDERED_LIST,
   MATH,
@@ -16,7 +15,7 @@ import {
 } from '../types'
 
 const PrimaryTypes = [
-  TABLE, ORDERED_LIST, UNORDERED_LIST, MATH, CODE, LINK_BLOCK
+  ORDERED_LIST, UNORDERED_LIST, MATH, CODE, LINK_BLOCK
 ]
 
 export default class BlockWrapper extends React.Component {
