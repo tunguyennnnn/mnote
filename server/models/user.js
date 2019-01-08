@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       as: 'threads'
     })
+
+    User.hasMany(models.TodoItem, {
+      foreignKey: 'userId',
+      as: 'todoItems'
+    })
   };
   return User;
 };
