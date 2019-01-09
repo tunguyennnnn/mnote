@@ -8,6 +8,11 @@ export default `
     hasPreviousPage: Boolean!
   }
 
+  type UpdatedResult {
+    updated: Boolean!
+    error: String
+  }
+
   type AuthorizationInfo {
     canView: Boolean!
     canEdit: Boolean!

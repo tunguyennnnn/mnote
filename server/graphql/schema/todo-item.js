@@ -14,9 +14,10 @@ export default `
 
   type Mutation {
     createTodoItem (userId: ID!, category: String!, name: String!): TodoItem!
-    updateTodoItemCategory (id: ID!, category: String!): Boolean!
-    updateTodoItemName (id: ID!, name: String!): Boolean!
-    updateTodoItemStatus (id: ID!, isDone: Boolean!): Boolean!
+    updateTodoItemCategory (id: ID!, category: String!): UpdatedResult!
+    updateTodoItemName (id: ID!, name: String!): UpdatedResult!
+    updateTodoItemStatus (id: ID!, isDone: Boolean!): UpdatedResult!
+    deleteTodoItem (id: ID!): Boolean!
     createTodoItemThread (todoItemId: ID!): Thread
   }
 `

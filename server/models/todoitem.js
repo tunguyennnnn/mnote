@@ -1,4 +1,5 @@
 'use strict';
+import _ from 'lodash'
 
 const CategoryTypes = {
   random: 'RANDOM',
@@ -37,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'threadId',
       as: 'thread'
     })  
+
+    TodoItem.isCategoryValid = (category) => {
+      return _.includes(_.values(CategoryTypes), category)
+    }
   }
 
   return TodoItem;

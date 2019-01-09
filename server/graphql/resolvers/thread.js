@@ -112,6 +112,20 @@ export default {
         console.log(e)
         return false
       }
+    },
+    createTodoItemThread: async (root, { todoItemId }, { models, user }) => {
+      try {
+        if (!user) throw new Error(`Anauthenticated`)
+        const todoItem = await models.TodoItem.findOne({ where: { id: todoItemId } })
+        if (!todoItem || user.id !== todoItem.userId) throw new Error(`Unauthorized`)
+        if (await todoItem.getThread()) throw new Error(`Already had thread associated`)
+        const thread = await models.Thread.create({ userId: user.id })
+        await todoItem.update({ threadId: thread.id })
+        return thread
+      } catch (e) {
+        console.log(e)
+        throw e
+      }
     }
   }
 }
