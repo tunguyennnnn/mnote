@@ -1,9 +1,11 @@
+import './noters/Noter.scss'
 import React from 'react'
 import gql from 'graphql-tag'
 import { compose, graphql } from 'react-apollo'
 import { Card } from 'semantic-ui-react'
 
 import { MyNote, NoteMenu } from './mynotes'
+import CheckList from './noters/CheckList'
 
 class NoterPage extends React.Component {
   deleteNote = async (id) => {
@@ -61,6 +63,7 @@ class NoterPage extends React.Component {
     return (
       <div class='noter-page-container'>
         <NoteMenu createNote={this.createNote} />
+        <CheckList userId={this.props.match.params.id} />
         <Card.Group>
           {
             edges.map(({ node }) =>
