@@ -8,12 +8,23 @@ export default `
     authorInfo: AuthorizationInfo!
   }
 
+  type TodoItemConnectionEdge {
+    cursor: String!
+    node: TodoItem!
+  }
+
+  type TodoItemConnection {
+    authorInfo: AuthorizationInfo!
+    pageInfo: PageInfo!
+    edges: [TodoItemConnectionEdge!]!
+  }
+
   type Query {
-    userTodoItems (userId: ID!): [TodoItem!]
+    userTodoItems (userId: ID!): TodoItemConnection!
   }
 
   type Mutation {
-    createTodoItem (userId: ID!, category: String!, name: String!): TodoItem!
+    createTodoItem: TodoItem!
     updateTodoItemCategory (id: ID!, category: String!): UpdatedResult!
     updateTodoItemName (id: ID!, name: String!): UpdatedResult!
     updateTodoItemStatus (id: ID!, isDone: Boolean!): UpdatedResult!

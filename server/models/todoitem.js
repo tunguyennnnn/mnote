@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       as: 'user'
     })
 
-    TodoItem.hasOne(models.Thread, {
+    TodoItem.belongsTo(models.Thread, {
       foreignKey: 'threadId',
       as: 'thread'
     })  

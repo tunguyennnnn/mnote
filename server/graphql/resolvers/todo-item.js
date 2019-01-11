@@ -16,7 +16,20 @@ export default {
   Query: {
     userTodoItems: async (root, { userId }, { models, user }) => {
       try {
-        return await models.TodoItem.findAll({ where: { userId }})
+        const todoItems = await models.TodoItem.findAll({ where: { userId }})
+        return {
+          pageInfo: {
+            hasNextPage: false,
+            hasPreviousPage: false
+          },
+          edges: todoItems.map(item => {
+            return { node: item, cursor: item.createdAt }
+          }),
+          authorInfo: {
+            canView: true,
+            canEdit: (user && String(user.id) === userId)
+          }
+        }
       } catch (e) {
         console.log(e)
         throw e
