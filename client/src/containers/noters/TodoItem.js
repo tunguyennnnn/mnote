@@ -2,6 +2,8 @@ import React from 'react'
 import { Icon } from 'semantic-ui-react'
 import _ from 'lodash'
 
+import { IconSelection, InputAndPreview } from '../../components'
+
 const CategoryToIcon = {
   RANDOM: 'pencil',
   BOOK: 'book',
@@ -9,22 +11,25 @@ const CategoryToIcon = {
   ARTICLE: 'file outline'
 }
 
+const CategoryOptions = _.keys(CategoryToIcon).map(k => {
+  return { key: k.toLowerCase(), icon: CategoryToIcon[k], value: k }
+})
+
 export default class TodoItem extends React.Component {
   render () {
-    const { category, name, isDone } = this.props
+    const { category, name, isDone, authorInfo: { canEdit } } = this.props
     return (
       <div class='todo-item'>
         <span class='category'>
-          <Icon name={CategoryToIcon[category]} link />
+          <IconSelection 
+            options={CategoryOptions}
+            currentItem={{ icon: CategoryToIcon[category], category }}
+            viewOnly={!canEdit}
+          />
         </span>
-        <p class='content'>
-          {name}
-          {!_.trim(name) && 
-            <span class='placeholder'>
-              What is your plan?
-            </span>
-          }
-        </p>
+        <span>
+          <InputAndPreview value={name} viewOnly={!canEdit} />
+        </span>
       </div>
     )
   }

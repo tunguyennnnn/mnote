@@ -5,6 +5,20 @@ import gql from 'graphql-tag'
 import TodoItem from './TodoItem'
 
 class CheckList extends React.Component {
+
+  updateName = async (itemId, value) => {
+    console.log(itemId, value)
+  }
+
+
+  updateCategory = async (itemId, value) => {
+    console.log(itemId, value)
+  }
+
+  updateTodoItemStatus = async (itemId, value) => {
+    console.log(itemId, value)
+  }
+
   createTodoItem = async (event) => {
     event.preventDefault()
     const { userId } = this.props
@@ -100,6 +114,33 @@ const createTodoItem = gql`
   }
 `
 
+const updateCategory = gql`
+  mutation updateTodoItemCategory ($id: ID!, $category: String!) {
+    updateResult: updateTodoItemCategory (id: $id, category: $category) {
+      updated
+      error
+    }
+  }
+`
+
+const updateName = gql`
+  mutation updateTodoItemName ($id: ID!, $name: String!) {
+    updateResult: updateTodoItemName (id: $id, name: $name) {
+      updated
+      error
+    }
+  }
+`
+
+const updateStatus = gql`
+  mutation updateTodoItemStatus ($id: ID!, $isDone: Boolean!) {
+    updateResult: updateTodoItemStatus (id: $id, isDone: $isDone) {
+      updated
+      error
+    }
+  }
+`
+
 export default compose(
   graphql(todoItemQuery, {
     options: (props) => {
@@ -110,5 +151,7 @@ export default compose(
       }
     }
   }),
-  graphql(createTodoItem, { name: 'createTodoItem' })
+  graphql(createTodoItem, { name: 'createTodoItem' }),
+  graphql(updateCategory, { name: 'updateCategory' }),
+  graphql(updateName, { name: 'updateName' })
 )(CheckList)
