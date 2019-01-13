@@ -7,12 +7,13 @@ export default class InputAndPreview extends React.Component {
   }
 
   componentDidUpdate () {
-    this.setInputValue()
+    this.setInputValueAndFocus()
   }
 
-  setInputValue () {
+  setInputValueAndFocus = () => {
     if (!this.inputEl) return
     this.inputEl.value = this.props.value
+    this.inputEl.focus()
   }
 
   submitInput = () => {
@@ -25,7 +26,7 @@ export default class InputAndPreview extends React.Component {
   renderEdit () {
     const { value } = this.props
     return (
-      <input placeholder='What is your plan?'
+      <textarea class='input' placeholder='What is your plan?'
              ref={el => this.inputEl = el}
              onBlur={this.submitInput}
       /> 

@@ -19,7 +19,7 @@ export default class IconSelection extends React.Component {
   onSelect = (value, event) => {
     event.preventDefault()
     this.setState({ showMenu: false })
-    console.log(value)
+    this.props.onChange(value)
   }
 
   renderMenu () {

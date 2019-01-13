@@ -6,8 +6,16 @@ import TodoItem from './TodoItem'
 
 class CheckList extends React.Component {
 
+  onUpdateItem = (itemId, { key, value }, proxy, { data: { updateResult }}) => {
+
+  }
+
   updateName = async (itemId, value) => {
-    console.log(itemId, value)
+    try {
+      
+    } catch (e) {
+      console.log(e)
+    }
   }
 
 
@@ -15,7 +23,7 @@ class CheckList extends React.Component {
     console.log(itemId, value)
   }
 
-  updateTodoItemStatus = async (itemId, value) => {
+  updateStatus = async (itemId, value) => {
     console.log(itemId, value)
   }
 
@@ -57,7 +65,14 @@ class CheckList extends React.Component {
         </div>
         <div class='checklist'>
          {
-           todoItems.map(({ cursor, node}) => <TodoItem {...node} key={`todo-item-${cursor}`} />)
+           todoItems.map(({ cursor, node}) => 
+            <TodoItem {...node} 
+                      key={`todo-item-${cursor}`} 
+                      updateName={this.updateName}
+                      updateCategory={this.updateCategory}
+                      updateStatus={this.updateStatus}
+                      />
+           )
          }
         </div>
         { canEdit && 
@@ -116,27 +131,42 @@ const createTodoItem = gql`
 
 const updateCategory = gql`
   mutation updateTodoItemCategory ($id: ID!, $category: String!) {
-    updateResult: updateTodoItemCategory (id: $id, category: $category) {
-      updated
-      error
+    result: updateTodoItemCategory (id: $id, category: $category) {
+      newItem {
+        id
+      }
+      updateResult: {
+        updated
+        error
+      }
     }
   }
 `
 
 const updateName = gql`
   mutation updateTodoItemName ($id: ID!, $name: String!) {
-    updateResult: updateTodoItemName (id: $id, name: $name) {
-      updated
-      error
+    result: updateTodoItemName (id: $id, name: $name) {
+      newItem {
+        id
+      }
+      updateResult: {
+        updated
+        error
+      }
     }
   }
 `
 
 const updateStatus = gql`
   mutation updateTodoItemStatus ($id: ID!, $isDone: Boolean!) {
-    updateResult: updateTodoItemStatus (id: $id, isDone: $isDone) {
-      updated
-      error
+    result: updateTodoItemStatus (id: $id, isDone: $isDone) {
+      newItem {
+        id
+      }
+      updateResult: {
+        updated
+        error
+      }
     }
   }
 `

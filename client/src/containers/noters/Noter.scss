@@ -26,8 +26,26 @@
   }
 
   .todo-item {
-    span {
-      display: inline;
+    position: relative;
+    padding-left: 40px;
+    box-sizing: border-box;
+    min-height: 40px;
+    border-left: 3px solid #85144b;
+    
+
+    .category-container {
+      display: inline-block;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+
+      .icon-selection-container {
+        font-size: 12px !important;
+      }
+    }
+
+    .input-container {
+      padding: 5px;
     }
   }
 }

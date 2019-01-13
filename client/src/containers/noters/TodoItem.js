@@ -17,19 +17,22 @@ const CategoryOptions = _.keys(CategoryToIcon).map(k => {
 
 export default class TodoItem extends React.Component {
   render () {
-    const { category, name, isDone, authorInfo: { canEdit } } = this.props
+    const { id, category, name, isDone, authorInfo: { canEdit } } = this.props
+    
+    const { updateName, updateCategory, updateStatus } = this.props
     return (
       <div class='todo-item'>
-        <span class='category'>
-          <IconSelection 
+        <div class='category-container'>
+          <IconSelection
+            onChange={updateCategory.bind(null, id)}
             options={CategoryOptions}
             currentItem={{ icon: CategoryToIcon[category], category }}
             viewOnly={!canEdit}
           />
-        </span>
-        <span>
+        </div>
+        <div class='input-container'>
           <InputAndPreview value={name} viewOnly={!canEdit} />
-        </span>
+        </div>
       </div>
     )
   }
