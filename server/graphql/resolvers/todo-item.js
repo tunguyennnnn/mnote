@@ -37,10 +37,10 @@ export default {
     }
   },
   Mutation: {
-    createTodoItem: async (root, { category, name }, { models, user }) => {
+    createTodoItem: async (root, { }, { models, user }) => {
       try {
         if (!user) throw new Error('Anauthenticated')
-        return await models.TodoItem.create({ category, name, userId: user.id })
+        return await models.TodoItem.create({ userId: user.id })
       } catch (e) {
         console.log(e)
         throw e
@@ -62,10 +62,10 @@ export default {
         const todoItem = await models.TodoItem.findOne({ where: { id} })
         if (!todoItem || todoItem.userId !== user.id) throw new Error(`Anauthorized`)
         if (!models.TodoItem.isCategoryValid(category)) throw new Error(`Invalid category ${category}`)
-        await todoItem.update({ category })
-        return { updated: true }
+        const newItem = await todoItem.update({ category })
+        return { updateResult: { updated: true }, newItem }
       } catch (e) {
-        return { updated: false, error: e.toString() }
+        return { updateResult: { updated: false, error: e.toString() } }
       }
     },
     updateTodoItemName: async (root, { id, name }, { models, user }) => {
@@ -73,10 +73,10 @@ export default {
         if (!user) throw new Error('Anauthenticated')
         const todoItem = await models.TodoItem.findOne({ where: { id} })
         if (!todoItem || todoItem.userId !== user.id) throw new Error(`Anauthorized`)
-        await todoItem.update({ name })
-        return { updated: true }
+        const newItem = await todoItem.update({ name })
+        return { updateResult: { updated: true }, newItem }
       } catch (e) {
-        return { updated: false, error: e.toString() }
+        return { updateResult: { updated: false, error: e.toString() } }
       }
     },
     updateTodoItemStatus: async (roor, { id, isDone }, { models, user }) => {
@@ -84,10 +84,10 @@ export default {
         if (!user) throw new Error('Anauthenticated')
         const todoItem = await models.TodoItem.findOne({ where: { id} })
         if (!todoItem || todoItem.userId !== user.id) throw new Error(`Anauthorized`)
-        await todoItem.update({ isDone })
-        return { updated: true }
+        const newItem = await todoItem.update({ isDone })
+        return { updateResult: { updated: true }, newItem }
       } catch (e) {
-        return { updated: false, error: e.toString() }
+        return { updateResult: { updated: false, error: e.toString() } }
       }
     }
   }
