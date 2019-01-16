@@ -6,13 +6,22 @@ import TodoItem from './TodoItem'
 
 class CheckList extends React.Component {
 
-  onUpdateItem = (itemId, { key, value }, proxy, { data: { updateResult }}) => {
-
+  onUpdateItem = (proxy, { data: { result }}) => {
+    const { userId } = this.props
+    const { newItem, updateResult: { updated, error } } = result
+    if (!updated) throw new Error(error)
+    const data = proxy.readQuery({ query: todoItemQuery, variables: { userId } })
+    const index = _.findIndex(data.userTodoItems.edges, (edge) => edge.node.id === newItem.id)
+    data.userTodoItems.edges[index].node = newItem
+    proxy.writeQuery({ query: todoItemQuery, data, variables: { userId } })
   }
 
   updateName = async (itemId, value) => {
     try {
-      
+      await this.props.updateName({
+        variables: { id: itemId, name: value },
+        update: this.onUpdateItem
+      })
     } catch (e) {
       console.log(e)
     }
@@ -20,7 +29,15 @@ class CheckList extends React.Component {
 
 
   updateCategory = async (itemId, value) => {
-    console.log(itemId, value)
+    try {
+      console.log(itemId, value)
+      await this.props.updateCategory({
+        variables: { id: itemId, category: value },
+        update: this.onUpdateItem
+      })
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   updateStatus = async (itemId, value) => {
@@ -67,7 +84,7 @@ class CheckList extends React.Component {
          {
            todoItems.map(({ cursor, node}) => 
             <TodoItem {...node} 
-                      key={`todo-item-${cursor}`} 
+                      key={`todo-item-${node.id}`} 
                       updateName={this.updateName}
                       updateCategory={this.updateCategory}
                       updateStatus={this.updateStatus}

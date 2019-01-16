@@ -20,7 +20,7 @@ export default class InputAndPreview extends React.Component {
     if (!this.inputEl) return
     const { value } = this.inputEl
     this.setState({ showEdit: false })
-    console.log(value)
+    this.props.onUpdate(value)
   }
 
   renderEdit () {
@@ -45,7 +45,7 @@ export default class InputAndPreview extends React.Component {
       <p class='content-preview'
         onDoubleClick={this.showEdit}
       >
-        {name}
+        {value}
         {!_.trim(value) && 
           <span class='placeholder'>
             What is your plan?

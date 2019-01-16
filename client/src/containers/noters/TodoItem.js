@@ -31,7 +31,7 @@ export default class TodoItem extends React.Component {
           />
         </div>
         <div class='input-container'>
-          <InputAndPreview value={name} viewOnly={!canEdit} />
+          <InputAndPreview value={name} viewOnly={!canEdit} onUpdate={updateName.bind(null, id)} />
         </div>
       </div>
     )

@@ -34,6 +34,7 @@ export default class IconSelection extends React.Component {
               const { key, icon, value } = option
               return (
                 <List.Item className='selection-item'
+                  key={key}
                   onClick={this.onSelect.bind(this, value)}
                 >
                   <Icon name={icon} link />
