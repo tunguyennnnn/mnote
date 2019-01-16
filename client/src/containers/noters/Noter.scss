@@ -1,0 +1,51 @@
+.checklist-container {
+  padding: 10px 5px 10px 5px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .checklist {
+
+  }
+
+  .checklist-action {
+    button {
+      color: #7a869a;
+      font-weight: 400;
+      background-color: transparent;
+      cursor: pointer;
+      border-width: 0px;
+    }
+    
+    button::before {
+      display: inline-block;
+      padding-right: 9px;
+      content: '+'
+    }
+  }
+
+  .todo-item {
+    position: relative;
+    padding-left: 40px;
+    box-sizing: border-box;
+    min-height: 40px;
+    border-left: 3px solid #85144b;
+    
+
+    .category-container {
+      display: inline-block;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+
+      .icon-selection-container {
+        font-size: 12px !important;
+      }
+    }
+
+    .input-container {
+      padding: 5px;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.icon-selection-container {
+  position: relative;
+  display: inline-block;
+  
+  .icon-container {
+
+  }
+
+  .selection-container {
+    position: absolute;
+    border: 1px solid #141c41;
+    border-radius: 8px;
+    padding: 5px;
+    margin-top: 8px;
+    background: #fff;
+    z-index: 1000;
+
+    .selection-item {
+      cursor: pointer;
+      border-radius: 5px;
+      padding: 3px;
+    }
+
+    .selection-item:hover {
+      background: #141c41;
+      opacity: 0.8;
+      color: white !important;
+    }
+  }
+}
