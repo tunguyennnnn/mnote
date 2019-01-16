@@ -87,6 +87,21 @@ class CheckList extends React.Component {
   }
 }
 
+const todoFields = gql`
+  fragment TodoFileds on TodoItem {
+    id
+    name
+    category
+    isDone
+    thread {
+      id
+    }
+    authorInfo {
+      canEdit
+    }
+  }
+`
+
 const todoItemQuery = gql`
   query userTodoItems ($userId: ID!) {
     userTodoItems (userId: $userId) {
@@ -96,74 +111,60 @@ const todoItemQuery = gql`
       edges {
         cursor
         node {
-          id
-          name
-          category
-          isDone
-          thread {
-            id
-          }
-          authorInfo {
-            canEdit
-          }
+          ...TodoFileds
         }
       }
     }
   }
+  ${todoFields}
 `
 
 const createTodoItem = gql`
   mutation createTodoItem {
     newItem: createTodoItem {
-      id
-      name
-      category
-      isDone
-      thread {
-        id
-      }
-      authorInfo {
-        canEdit
-      }
+      ...TodoFileds
     }
   }
+  ${todoFields}
 `
 
 const updateCategory = gql`
   mutation updateTodoItemCategory ($id: ID!, $category: String!) {
     result: updateTodoItemCategory (id: $id, category: $category) {
       newItem {
-        id
+        ...TodoFileds
       }
-      updateResult: {
+      updateResult {
         updated
         error
       }
     }
   }
+  ${todoFields}
 `
 
 const updateName = gql`
   mutation updateTodoItemName ($id: ID!, $name: String!) {
     result: updateTodoItemName (id: $id, name: $name) {
       newItem {
-        id
+        ...TodoFileds
       }
-      updateResult: {
+      updateResult {
         updated
         error
       }
     }
   }
+  ${todoFields}
 `
 
 const updateStatus = gql`
   mutation updateTodoItemStatus ($id: ID!, $isDone: Boolean!) {
     result: updateTodoItemStatus (id: $id, isDone: $isDone) {
       newItem {
-        id
+        ...TodoFileds
       }
-      updateResult: {
+      updateResult {
         updated
         error
       }
