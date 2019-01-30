@@ -6,8 +6,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/satori/go.uuid"
 )
 
 // PORT 6000 http server

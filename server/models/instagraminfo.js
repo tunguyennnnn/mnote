@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     numberOfComments: DataTypes.INTEGER,
     image: DataTypes.STRING,
     numberOfLikes: DataTypes.INTEGER,
-    instagramItemId: DataTypes.INTEGER
+    instagramItemId: DataTypes.INTEGER,
+    numberOfFollowers: DataTypes.INTEGER
   }, {});
   InstagramInfo.associate = (models) => {
     InstagramInfo.belongsTo(models.InstagramItem, {
