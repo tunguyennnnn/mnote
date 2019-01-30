@@ -5,26 +5,40 @@ import axios from 'axios'
 async function requestUpdate (items) {
   if (_.isEmpty(items)) return
   const [item] = items
-  const response = await axios.post( 'http://' + process.env.CRAPING_HOST +  ':5000/api/instgram_crapper', {
-    url: item.url
-  })
-  const { data: {results} } = response
-  const { number_of_followers } = results[0] || {}
-  await models.InstagramInfo.update({
-    numberOfFollowers: number_of_followers,
-  }, 
-  { where: { instagramItemId: item.id} })
+  try {
+    const response = await axios.post( 'http://' + process.env.CRAPING_HOST +  ':5000/api/instgram_crapper', {
+      url: item.url
+    })
+    const { data: {results} } = response
+    const { number_of_followers } = results[0] || {}
+    await models.InstagramInfo.update({
+      numberOfFollowers: number_of_followers,
+    }, 
+    { where: { instagramItemId: item.id} })
+  } catch (e) {
+    console.log(e)
+  }
 
   setTimeout(requestUpdate.bind(null, _.slice(items, 1)), 10000)
 }
 
 export default async function updateFollower (req, res) {
+  const { from = 0 } = req.body
   try {
     const instagramItems = await models.InstagramItem.findAll({
       where: {
-        url: {
-          $notLike: '%location%'
-        }
+        $and: [
+          {
+            url: {
+              $notLike: '%location%'
+            }
+          },
+          {
+            id: {
+              $gt: from
+            }
+          }
+        ]
       }
     })
     requestUpdate(instagramItems)
