@@ -42,7 +42,8 @@ app.use(
     endpointURL: '/graphql'
   })
 )
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/api', restRoute)
 app.use(authCheck)
 
